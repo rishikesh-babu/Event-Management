@@ -1,4 +1,6 @@
 const supabase = require("../config/db");
+const { setCookies } = require("../Utils/cookies");
+const generateToken = require("../Utils/token");
 
 async function userSignup(req, res, next) {
     console.log('Router: User Signup')
@@ -16,14 +18,21 @@ async function userSignup(req, res, next) {
         return res.status(404).json({ message: 'Email already exist' })
     }
 
-    const { data, error } = await supabase.from('users').insert([{ name, email, password }])
+    const { data, error } = await supabase.from('users').insert([{ name, email, password }]).select()
     if (error) {
         console.log('error :>> ', error);
         return res.status(404).json({ message: 'Error in inserting data', data: error })
     }
 
-    console.log('data :>> ', data);
-    return res.status(201).json({ message: 'User login Successfully', data })
+    const userData = data[0]
+
+    console.log('data :>> ', userData);
+    
+    const token = generateToken(userData)
+    setCookies(res, token)
+    
+    return res.status(201).json({ message: 'User login Successfully', data: userData })
+
 }
 
 module.exports = {
