@@ -1,5 +1,6 @@
 const express = require('express')
 const supabase = require('./config/db')
+const apiRoute = require('./Router')
 const port = 3000
 
 const app = express()
@@ -13,11 +14,4 @@ app.listen(port, (err) => {
     }
 })
 
-async function fetchUser() {
-    const { data, error } = await supabase.from('user').select('*')
-
-    console.log('data :>> ', data);
-    console.log('error :>> ', error);
-}
-
-fetchUser()
+app.use('api', apiRoute)
