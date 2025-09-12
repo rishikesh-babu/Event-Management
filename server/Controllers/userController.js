@@ -1,9 +1,10 @@
-async function getUser(req, res, next) {
-    console.log('Get user')
+async function createUser(req, res, next) {
+    console.log('Router: Create User')
 
-
+    console.log('req :>> ', req);
+    console.log('req.body :>> ', req.body);
 }
 
 module.exports = {
-    getUser
+    createUser,
 }
