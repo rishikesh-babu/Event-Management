@@ -1,13 +1,11 @@
 import React from "react"
+import { RouterProvider } from "react-router-dom"
+import router from "./Routes/router"
 
 function App() {
     return (
         <>
-            <div className="p-3 font-semibold text-center text-3xl bg-accent ">
-                Hello world!{" "}
-                <span className="loading loading-dots"></span>
-            </div>
-
+            <RouterProvider router={router} />
         </>
     )
 }
