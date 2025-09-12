@@ -1,8 +1,16 @@
 const express = require('express')
-const { getUser } = require('../Controllers/userController')
+const userRouter = require('./userRoute')
 const router = express.Router()
 
-router.get('/get-user',  getUser)
+router.use((req, res, next) => {
+    console.log('Router: Api')
+    next()
+})
+
+router.use('/user', userRouter)
+// router.use('/admin')
+// router.use('/event')
+// router.use('/registration')
 
 const apiRoute = router
 module.exports = apiRoute
