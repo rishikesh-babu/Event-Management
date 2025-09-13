@@ -1,5 +1,6 @@
 const express = require('express')
 const { createEvent } = require('../Controllers/eventController')
+const adminAuth = require('../Middlewares/adminAuth')
 const router = express.Router()
 
 router.use((req, res, next) => {
@@ -7,7 +8,7 @@ router.use((req, res, next) => {
     next()
 })
 
-router.post('/create', createEvent)
+router.post('/create', adminAuth, createEvent)
 
 const eventRouter = router
 module.exports = eventRouter

@@ -23,7 +23,7 @@ async function adminSignup(req, res, next) {
             return res.status(400).json({ message: 'Email already exist' })
         }
 
-        const { data, error } = await supabase.from('users').insert([{ name, email, password, role: 'admin' }]).select('id, name, email, role status, created_at')
+        const { data, error } = await supabase.from('users').insert([{ name, email, password, role: 'admin' }]).select('id, name, email, role, status, created_at')
 
         if (error) {
             return res.status(404).json({ message: 'Error in signup', data: error })
@@ -32,7 +32,7 @@ async function adminSignup(req, res, next) {
         const adminData = data[0]
 
         const token = generateToken(adminData)
-        setCookies(req, token)
+        setCookies(res, token)
 
         return res.status(201).json({ message: 'Admin signup successfully', data: adminData })
     } catch (err) {
