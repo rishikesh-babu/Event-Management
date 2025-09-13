@@ -51,5 +51,6 @@ app.use((err, req, res, next) => {
 
 // End point error handling
 app.all(/.*/, (req, res) => {
+    console.log('End point does not exist')
     return res.status(404).json({ message: 'End point does not exist' })
 })
