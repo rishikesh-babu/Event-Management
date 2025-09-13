@@ -24,6 +24,21 @@ const router = createBrowserRouter([
                 element: <Signup />
             }
         ]
+    }, 
+    {
+        path: 'admin', 
+        element: <div>Admin layout</div>, 
+        errorElement: <Errorpage />, 
+        children: [
+            {
+                path: 'login',
+            }, 
+            {
+                path: '', 
+                element: <h1>Admin protect layout</h1>,  // after login
+                children: []
+            }
+        ]
     }
 ])
 
