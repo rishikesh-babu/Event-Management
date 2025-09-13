@@ -43,12 +43,32 @@ async function adminSignup(req, res, next) {
 async function adminLogin(req, res, next) {
     try {
         console.log('Router: Login')
+
+        let { email, password } = req.body
+
+        email = email?.trim()
+        password = password?.trim()
+
+        if (!email || !password) {
+            return res.status(404).json({ message: 'All fields are required' })
+        }
+
+        const adminResponse = await supabase.from('users').select('id, name, role, status, created_at').eq('email', email).single()
+
+        if (adminResponse.error) {
+            return res.status(400).json({ message: 'Admin login failed', data: adminResponse.error })
+        }
+
+        const token = generateToken(adminResponse.data)
+        setCookies(res, token)
+
+        return res.status(200).json({ message: 'Admin Login successfully', data: adminResponse.data })
     } catch (err) {
         next(err)
     }
 }
 
 module.exports = {
-    adminSignup, 
+    adminSignup,
     adminLogin
 }
