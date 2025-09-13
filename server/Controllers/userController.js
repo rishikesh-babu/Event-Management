@@ -1,5 +1,5 @@
 const supabase = require("../config/db");
-const { setCookies } = require("../Utils/cookies");
+const { setCookies, clearCookies } = require("../Utils/cookies");
 const generateToken = require("../Utils/token");
 
 async function userSignup(req, res, next) {
@@ -63,7 +63,13 @@ async function userLogin(req, res, next) {
         const userResponse = await supabase.from('users').select('id, name, email, phone, department, role, status, created_at').eq('email', email).single()
 
         if (userResponse.error) {
-            return res.status(400).json({ sucess:false, message: 'User login failed', data: userResponse.error })
+            return res.status(400).json({ sucess:false, message: 'Email Doesnot exist' })
+        }
+
+        const userData = userResponse.data
+
+        if (userData.password !== password) {
+            return res.status(404).json({ message: 'Password is incorrect' })
         }
 
         const token = generateToken(userResponse.data)
@@ -79,7 +85,8 @@ async function userLogout(req, res, next) {
     try {
         console.log('Router: Logout')
 
-        console.log('res.cookies.token :>> ', res.cookies.token);
+        clearCookies(res) 
+        return res.status(200).json({ message: 'Logout Successfully' })
     } catch (err) {
         next()
     }
