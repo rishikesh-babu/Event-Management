@@ -6,13 +6,14 @@ async function userSignup(req, res, next) {
     try {
         console.log('Router: User Signup')
 
-        let { name, email, password } = req.body
+        let { name, email, password, phone, department } = req.body
 
         name = name?.trim()
         email = email?.trim()
         password = password.trim()
+        department = department?.trim()
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !phone || !department) {
             return res.status(400).json({ message: 'All field are required' })
         }
 
@@ -23,7 +24,7 @@ async function userSignup(req, res, next) {
             return res.status(404).json({ message: 'Email already exist' })
         }
 
-        const { data, error } = await supabase.from('users').insert([{ name, email, password }]).select('id, name, email, role, status, created_at')
+        const { data, error } = await supabase.from('users').insert([{ name, email, password, phone, department }]).select('id, name, email, phone, department, role, status, created_at')
         if (error) {
             console.log('error :>> ', error);
             return res.status(404).json({ message: 'Error in signup', data: error })
@@ -53,7 +54,7 @@ async function useLogin(req, res, next) {
             return res.status(404).json({ message: 'All fields are required' })
         }
 
-        const userResponse = await supabase.from('users').select('id, name, email, role, status, created_at').eq('email', email).single()
+        const userResponse = await supabase.from('users').select('id, name, email, phone, department, role, status, created_at').eq('email', email).single()
 
         if (userResponse.error) {
             return res.status(400).json({ message: 'User login failed', data: userResponse.error })
