@@ -60,7 +60,7 @@ async function userLogin(req, res, next) {
             return res.status(404).json({ message: 'All fields are required' })
         }
 
-        const userResponse = await supabase.from('users').select('id, name, email, phone, department, role, status, created_at').eq('email', email).single()
+        const userResponse = await supabase.from('users').select('*').eq('email', email).single()
 
         if (userResponse.error) {
             return res.status(400).json({ sucess:false, message: 'Email Doesnot exist' })
@@ -71,6 +71,8 @@ async function userLogin(req, res, next) {
         if (userData.password !== password) {
             return res.status(404).json({ message: 'Password is incorrect' })
         }
+
+        delete userData.password
 
         const token = generateToken(userResponse.data)
         setCookies(res, token)
