@@ -8,7 +8,7 @@ router.use((req, res, next) => {
 })
 
 router.post('/signup', userSignup)
-router.get('/login', useLogin)
+router.post('/login', useLogin)
 
 const userRouter = router
 module.exports = userRouter

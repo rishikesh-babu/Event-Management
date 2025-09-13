@@ -6,15 +6,20 @@ async function userSignup(req, res, next) {
     try {
         console.log('Router: User Signup')
 
-        let { name, email, password, phone, department } = req.body
+        let { name, email, password, department,  phone_number : phone,register_number } = req.body
 
         name = name?.trim()
         email = email?.trim()
         password = password.trim()
         department = department?.trim()
+        phone = phone?.trim()
+        register_number = register_number?.trim()
 
-        if (!name || !email || !password || !phone || !department) {
-            return res.status(400).json({ message: 'All field are required' })
+        if (!register_number) {
+            return res.status(400).json({ message: 'Register number is required' })
+        }
+        if (!name || !email || !password || !department || !phone || !register_number) {
+            return res.status(400).json({ message: 'All fields are required' })
         }
 
         const userResponse = await supabase.from('users').select('*').eq('email', email).single()
@@ -24,7 +29,8 @@ async function userSignup(req, res, next) {
             return res.status(404).json({ message: 'Email already exist' })
         }
 
-        const { data, error } = await supabase.from('users').insert([{ name, email, password, phone, department }]).select('id, name, email, phone, department, role, status, created_at')
+        const { data, error } = await supabase.from('users').insert([{ name, email, password, department, phone, register_number }]).select('id, name, email, department, phone, register_number, role, status, created_at')
+
         if (error) {
             console.log('error :>> ', error);
             return res.status(404).json({ message: 'Error in signup ❌', data: error })
@@ -57,13 +63,13 @@ async function useLogin(req, res, next) {
         const userResponse = await supabase.from('users').select('id, name, email, phone, department, role, status, created_at').eq('email', email).single()
 
         if (userResponse.error) {
-            return res.status(400).json({ message: 'User login failed', data: userResponse.error })
+            return res.status(400).json({ sucess:false, message: 'User login failed', data: userResponse.error })
         }
 
         const token = generateToken(userResponse.data)
         setCookies(res, token)
 
-        return res.status(200).json({ message: 'Login successfully ✅', data: userResponse.data })
+        return res.status(200).json({success:true, message: 'Login successfully ✅', data: userResponse.data })
     } catch (err) {
         next(err)
     }
