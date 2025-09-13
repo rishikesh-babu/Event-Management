@@ -6,7 +6,7 @@ async function userSignup(req, res, next) {
     try {
         console.log('Router: User Signup')
 
-        let { name, email, password, department,  phone_number : phone,register_number } = req.body
+        let { name, email, password, department, phone, register_number } = req.body
 
         name = name?.trim()
         email = email?.trim()
@@ -47,7 +47,7 @@ async function userSignup(req, res, next) {
     }
 }
 
-async function useLogin(req, res, next) {
+async function userLogin(req, res, next) {
     try {
         console.log('Router: User Login')
 
@@ -75,7 +75,18 @@ async function useLogin(req, res, next) {
     }
 }
 
+async function userLogout(req, res, next) {
+    try {
+        console.log('Router: Logout')
+
+        console.log('res.cookies.token :>> ', res.cookies.token);
+    } catch (err) {
+        next()
+    }
+}
+
 module.exports = {
     userSignup,
-    useLogin
+    userLogin, 
+    userLogout
 }

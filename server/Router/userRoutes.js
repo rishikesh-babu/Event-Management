@@ -1,5 +1,5 @@
 const express = require('express')
-const { userSignup, useLogin } = require('../Controllers/userController')
+const { userSignup, userLogin, userLogout } = require('../Controllers/userController')
 const router = express.Router()
 
 router.use((req, res, next) => {
@@ -8,7 +8,9 @@ router.use((req, res, next) => {
 })
 
 router.post('/signup', userSignup)
-router.post('/login', useLogin)
+router.post('/login', userLogin)
+
+router.post('/logout', userLogout)
 
 const userRouter = router
 module.exports = userRouter
