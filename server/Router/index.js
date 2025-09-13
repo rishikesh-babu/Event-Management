@@ -1,5 +1,6 @@
 const express = require('express')
-const userRouter = require('./userRoute')
+const userRouter = require('./userRoutes')
+const adminRouter = require('./adminRoutes')
 const router = express.Router()
 
 router.use((req, res, next) => {
@@ -8,7 +9,7 @@ router.use((req, res, next) => {
 })
 
 router.use('/user', userRouter)
-// router.use('/admin')
+router.use('/admin', adminRouter)
 // router.use('/event')
 // router.use('/registration')
 

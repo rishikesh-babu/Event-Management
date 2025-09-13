@@ -26,7 +26,7 @@ async function userSignup(req, res, next) {
         const { data, error } = await supabase.from('users').insert([{ name, email, password }]).select('id, name, email, role, status, created_at')
         if (error) {
             console.log('error :>> ', error);
-            return res.status(404).json({ message: 'Error in inserting data', data: error })
+            return res.status(404).json({ message: 'Error in signup', data: error })
         }
 
         const userData = data[0]
@@ -34,7 +34,7 @@ async function userSignup(req, res, next) {
         const token = generateToken(userData)
         setCookies(res, token)
 
-        return res.status(201).json({ message: 'User login Successfully', data: userData })
+        return res.status(201).json({ message: 'User signup Successfully', data: userData })
     } catch (err) {
         next(err)
     }
