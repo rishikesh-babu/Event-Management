@@ -9,9 +9,9 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    
+
     origin: '*',
-    methods: ['GET', 'POST', 'DELETE', 'PUT'], 
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
     credentials: true
 }))
 
@@ -42,16 +42,14 @@ app.get('/', (req, res, next) => {
 // API Routes
 app.use('/api', apiRoute)
 
-// Internal Server Error handle
+// Error-handling middleware
 app.use((err, req, res, next) => {
-    if (err) {
-        console.log('err.message :>> ', err.message);
-        return res.status(err.statusCode || 500).json({ message: err.message || 'Internal Server Error' })
-    }
-})
+    console.error('Error:', err.message);
+    return res.status(err.statusCode || 500).json({ message: err.message || 'Internal Server Error' });
+});
 
-// End point error handling
-app.all(/.*/, (req, res) => {
-    console.log('End point does not exist')
-    return res.status(404).json({ message: 'End point does not exist' })
-})
+// Catch-all for unknown routes
+app.use((req, res) => {
+    console.warn('Endpoint does not exist:', req.originalUrl);
+    return res.status(404).json({ message: 'Endpoint does not exist' });
+});

@@ -1,12 +1,12 @@
 const supabase = require("../config/db");
-const { setCookies } = require("../Utils/cookies");
+const { setCookies, clearCookies } = require("../Utils/cookies");
 const generateToken = require("../Utils/token");
 
 async function userSignup(req, res, next) {
     try {
         console.log('Router: User Signup')
 
-        let { name, email, password, department,  phone_number : phone,register_number } = req.body
+        let { name, email, password, department, phone, register_number } = req.body
 
         name = name?.trim()
         email = email?.trim()
@@ -47,7 +47,7 @@ async function userSignup(req, res, next) {
     }
 }
 
-async function useLogin(req, res, next) {
+async function userLogin(req, res, next) {
     try {
         console.log('Router: User Login')
 
@@ -60,11 +60,19 @@ async function useLogin(req, res, next) {
             return res.status(404).json({ message: 'All fields are required' })
         }
 
-        const userResponse = await supabase.from('users').select('id, name, email, phone, department, role, status, created_at').eq('email', email).single()
+        const userResponse = await supabase.from('users').select('*').eq('email', email).single()
 
         if (userResponse.error) {
-            return res.status(400).json({ sucess:false, message: 'User login failed', data: userResponse.error })
+            return res.status(400).json({ sucess:false, message: 'Email Doesnot exist' })
         }
+
+        const userData = userResponse.data
+
+        if (userData.password !== password) {
+            return res.status(404).json({ message: 'Password is incorrect' })
+        }
+
+        delete userData.password
 
         const token = generateToken(userResponse.data)
         setCookies(res, token)
@@ -75,7 +83,19 @@ async function useLogin(req, res, next) {
     }
 }
 
+async function userLogout(req, res, next) {
+    try {
+        console.log('Router: Logout')
+
+        clearCookies(res) 
+        return res.status(200).json({ message: 'Logout Successfully' })
+    } catch (err) {
+        next()
+    }
+}
+
 module.exports = {
     userSignup,
-    useLogin
+    userLogin, 
+    userLogout
 }

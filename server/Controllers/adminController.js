@@ -53,11 +53,19 @@ async function adminLogin(req, res, next) {
             return res.status(404).json({ message: 'All fields are required' })
         }
 
-        const adminResponse = await supabase.from('users').select('id, name, role, status, created_at').eq('email', email).single()
+        const adminResponse = await supabase.from('users').select('*').eq('email', email).single()
 
         if (adminResponse.error) {
-            return res.status(400).json({ message: 'Admin login failed', data: adminResponse.error })
+            return res.status(400).json({ message: 'Email doesnot exist' })
         }
+
+        const adminData = adminResponse.data
+
+        if (adminData.password !== password) {
+            return res.status(400).json({ message: 'Incorrect password' })
+        }
+
+        delete adminData.password
 
         const token = generateToken(adminResponse.data)
         setCookies(res, token)
