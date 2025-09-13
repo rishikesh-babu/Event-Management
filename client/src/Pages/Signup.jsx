@@ -161,7 +161,7 @@ export default function Signup() {
         try {
             const result = await signupUser(payload)
             if (result.error) {
-                showNotification(result.error, "error")
+                showNotification(result.error, "warning")
             } else {
                 showNotification("Signup successful!", "success")
                 setTimeout(() => navigate("/login"), 1000)

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { logout, login } from '../store/slice/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import NotificationBar from '../contexts/NotificationContext'
 export default function Navbar() {
     const dispatch = useDispatch()
     const [active, setActive] = useState(location.pathname)
@@ -12,6 +13,12 @@ export default function Navbar() {
     useEffect(() => {
         setActive(location.pathname)
     }, [location.pathname])
+    const [notification, setNotification] = useState({ message: "", type: "" })
+
+    const showNotification = (msg, type) => {
+        setNotification({ message: '' })
+        setTimeout(() => setNotification({ message: msg, type }), 10)
+    }
 
     const getClass = (path) => {
         return path === active
@@ -21,10 +28,12 @@ export default function Navbar() {
 
     const handleLogout = () => {
         dispatch(logout())
-        navigate('/')
+        showNotification("Logged Out successfully!", "success")
     }
     return (
         <header className='fixed top-0 left-0 grid sm:grid-cols-[20%_80%] md:grid-cols-2 lg:grid-cols-2 gap-5 w-full h-20 shadow-md bg-white' >
+            <NotificationBar message={notification.message} type={notification.type} />
+
             <div className='h-full flex items-center'>
             </div>
             <div className=' h-full text-center flex justify-around items-center'>

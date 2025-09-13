@@ -19,6 +19,7 @@ export default function NotificationBar({ message, type = "info", duration = 500
       case "success": return "bg-green-600"
       case "error": return "bg-red-600"
       case "info": return "bg-blue-600"
+      case "warning": return"bg-yellow-500"
       default: return "bg-gray-600"
     }
   }

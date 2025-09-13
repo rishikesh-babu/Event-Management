@@ -17,7 +17,8 @@ export default function Login() {
     const dispatch = useDispatch()
 
     const showNotification = (msg, type) => {
-        setNotification({ message: msg, type })
+        setNotification({ message: '' })
+        setTimeout(() => setNotification({ message: msg, type }), 10)
     }
 
     const handleChange = (e) => {
@@ -50,7 +51,7 @@ export default function Login() {
                 dispatch(login({
                     id: result.data.id,
                     name: result.data.name,
-                    isAdmin: result.data.role==='admin' ? true : false
+                    isAdmin: result.data.role === 'admin' ? true : false
                 }))
                 setTimeout(() => navigate('/'), 500)
             } else {
