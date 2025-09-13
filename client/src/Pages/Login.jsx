@@ -62,7 +62,7 @@ export default function Login() {
     }
 
     return (
-        <div className="max-w-md mx-auto mt-16 bg-white rounded-xl shadow-2xl p-8">
+        <div className="max-w-md mx-auto mt-24 bg-white rounded-xl shadow-2xl p-8">
             <NotificationBar message={notification.message} type={notification.type} />
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Login</h2>
 

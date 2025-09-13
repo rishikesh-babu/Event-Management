@@ -1,11 +1,14 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
 
 export default function Layout() {
+
+    const location = useLocation();
+
     return (
         <>
-            <Navbar />
+            {!['/Login', '/signup'].includes(location.pathname) && <Navbar />}
             <Outlet />
             {/* <div>Footer</div> */}
         </>
