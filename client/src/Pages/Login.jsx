@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../api/api'
 import NotificationBar from '../contexts/NotificationContext'
+import { login } from '../store/slice/userSlice'
+import { useSelector, useDispatch } from 'react-redux';
+
 export default function Login() {
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState({
@@ -11,9 +14,11 @@ export default function Login() {
     const [formErrors, setFormErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [notification, setNotification] = useState({ message: "", type: "" })
+    const dispatch = useDispatch()
 
     const showNotification = (msg, type) => {
-        setNotification({ message: msg, type })
+        setNotification({ message: '' })
+        setTimeout(() => setNotification({ message: msg, type }), 10)
     }
 
     const handleChange = (e) => {
@@ -43,7 +48,12 @@ export default function Login() {
             const result = await loginUser(credentials)
             if (result.success) {
                 showNotification("Logged successfully!", "success")
-                setTimeout(() => navigate('/'), 500) 
+                dispatch(login({
+                    id: result.data.id,
+                    name: result.data.name,
+                    isAdmin: result.data.role === 'admin' ? true : false
+                }))
+                setTimeout(() => navigate('/'), 500)
             } else {
                 setFormErrors({ general: result.message || "Login failed" })
                 showNotification(result.message || "Login failed", "error")

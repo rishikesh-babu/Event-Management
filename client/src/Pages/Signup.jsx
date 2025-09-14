@@ -152,15 +152,16 @@ export default function Signup() {
         const fullName = formData.middle_name
             ? `${formData.first_name} ${formData.middle_name} ${formData.last_name}`
             : `${formData.first_name} ${formData.last_name}`;
-        const { first_name, middle_name, last_name, confirmPassword, ...rest } = formData;
+        const { first_name, middle_name, last_name, confirmPassword,phone_number, ...rest } = formData;
         const payload = {
             ...rest,
-            name: fullName
+            name: fullName,
+            phone:phone_number
         };
         try {
             const result = await signupUser(payload)
             if (result.error) {
-                showNotification(result.error, "error")
+                showNotification(result.error, "warning")
             } else {
                 showNotification("Signup successful!", "success")
                 setTimeout(() => navigate("/login"), 1000)

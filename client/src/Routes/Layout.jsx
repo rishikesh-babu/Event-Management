@@ -8,7 +8,7 @@ export default function Layout() {
 
     return (
         <>
-            {!['/Login', '/signup'].includes(location.pathname) && <Navbar />}
+            {!['/login', '/signup'].includes(location.pathname) && <Navbar />}
             <Outlet />
             {/* <div>Footer</div> */}
         </>
