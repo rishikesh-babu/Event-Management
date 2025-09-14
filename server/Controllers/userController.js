@@ -15,9 +15,6 @@ async function userSignup(req, res, next) {
         phone = phone?.trim()
         register_number = register_number?.trim()
 
-        if (!register_number) {
-            return res.status(400).json({ message: 'Register number is required' })
-        }
         if (!name || !email || !password || !department || !phone || !register_number) {
             return res.status(400).json({ message: 'All fields are required' })
         }
