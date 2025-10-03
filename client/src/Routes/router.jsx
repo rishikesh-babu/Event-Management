@@ -5,6 +5,7 @@ import Errorpage from "../Pages/Shared/Errorpage";
 import Login from "../Pages/User/Login";
 import Signup from "../Pages/User/Signup";
 import AdminLayout from "./AdminLayout";
+import AdminProtectLayout from "./AdminProtectLayout";
 
 const router = createBrowserRouter([
     {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
             }, 
             {
                 path: '', 
-                element: <h1>Admin protect layout</h1>,  // after login
+                element: <AdminProtectLayout />,  // after login
                 children: []
             }
         ]
