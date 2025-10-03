@@ -9,6 +9,8 @@ router.use((req, res, next) => {
 })
 
 router.post('/create', adminAuth, createEvent)
+// router.get('/event')
+// router.get('event/:eventId')
 
 const eventRouter = router
 module.exports = eventRouter
