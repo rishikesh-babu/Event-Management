@@ -18,12 +18,15 @@ const router = createBrowserRouter([
                 element: <Home />
             }, 
             {
-                path: '/login', 
+                path: 'login', 
                 element: <Login />
             }, 
             {
-                path: '/signup', 
+                path: 'signup', 
                 element: <Signup />
+            }, 
+            {
+                path: 'event',
             }
         ]
     }, 
@@ -38,7 +41,20 @@ const router = createBrowserRouter([
             {
                 path: '', 
                 element: <AdminProtectLayout />,  // after login
-                children: []
+                children: [
+                    {
+                        path: '',
+                    }, 
+                    {
+                        path: 'event',
+                    }, 
+                    {
+                        path: 'event/:eventid',
+                    }, 
+                    {
+                        path: 'create-event',
+                    }, 
+                ]
             }
         ]
     }
