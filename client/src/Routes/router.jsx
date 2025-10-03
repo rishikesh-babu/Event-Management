@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import Errorpage from "../Pages/Shared/Errorpage";
 import Login from "../Pages/User/Login";
 import Signup from "../Pages/User/Signup";
+import AdminLayout from "./AdminLayout";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
     }, 
     {
         path: 'admin', 
-        element: <div>Admin layout</div>, 
+        element: <AdminLayout />, 
         errorElement: <Errorpage />, 
         children: [
             {
