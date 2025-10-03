@@ -9,7 +9,10 @@ export default function Layout() {
 
     return (
         <>
-            {!['/login', '/signup'].includes(location.pathname) && <Navbar />}
+            {/* {!['/login', '/signup'].includes(location.pathname) && <Navbar />} */}
+            <div className='mb-[5rem] '>
+                <Navbar />
+            </div>
             <Outlet />
             <Footer />
         </>
