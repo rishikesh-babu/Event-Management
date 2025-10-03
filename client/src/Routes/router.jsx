@@ -6,6 +6,13 @@ import Login from "../Pages/User/Login";
 import Signup from "../Pages/User/Signup";
 import AdminLayout from "./AdminLayout";
 import AdminProtectLayout from "./AdminProtectLayout";
+import AdminHome from "../Pages/Admin/AdminHome";
+import AdminEvent from "../Pages/Admin/AdminEvent";
+import AdminEventDetails from "../Pages/Admin/AdminEventDetails";
+import AdminCreateEvent from "../Pages/Admin/AdminCreateEvent";
+import Event from "../Pages/User/Event";
+import EventDetails from "../Pages/User/EventDetails";
+import About from "../Pages/User/About";
 
 const router = createBrowserRouter([
     {
@@ -18,7 +25,8 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: 'about'
+                path: 'about',
+                element: <About />
             },
             {
                 path: 'login', 
@@ -30,9 +38,11 @@ const router = createBrowserRouter([
             }, 
             {
                 path: 'event',
+                element: <Event />
             }, 
             {
-                path: 'event/:eventId', 
+                path: 'event/:eventId',
+                element: <EventDetails />
             }
         ]
     }, 
@@ -50,15 +60,19 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: '',
+                        element: <AdminHome />
                     }, 
                     {
                         path: 'event',
+                        element: <AdminEvent />
                     }, 
                     {
                         path: 'event/:eventId',
+                        element: <AdminEventDetails />
                     }, 
                     {
                         path: 'create-event',
+                        element: <AdminCreateEvent />
                     }, 
                 ]
             }
