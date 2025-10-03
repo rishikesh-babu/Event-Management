@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import Navbar from '../Components/Navbar'
+import Navbar from '../Components/User/Navbar'
+import Footer from '../Components/User/Footer';
 
 export default function Layout() {
 
@@ -10,7 +11,7 @@ export default function Layout() {
         <>
             {!['/login', '/signup'].includes(location.pathname) && <Navbar />}
             <Outlet />
-            {/* <div>Footer</div> */}
+            <Footer />
         </>
     )
 }

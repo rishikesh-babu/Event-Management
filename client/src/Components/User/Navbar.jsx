@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { logout } from '../store/slice/userSlice'
+import { logout } from '../../store/slice/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import NotificationBar from '../contexts/NotificationContext'
+import NotificationBar from '../../contexts/NotificationContext'
 export default function Navbar() {
     const dispatch = useDispatch()
     const [active, setActive] = useState(location.pathname)
