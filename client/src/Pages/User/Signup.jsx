@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { signupUser } from '../api/api'
-import NotificationBar from '../contexts/NotificationContext'
+import { signupUser } from '../../api/api'
+import NotificationBar from '../../contexts/NotificationContext'
 export default function Signup() {
 
     const navigate = useNavigate()

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { logout, login } from '../store/slice/userSlice'
+import { logout } from '../store/slice/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import NotificationBar from '../contexts/NotificationContext'

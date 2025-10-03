@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { loginUser } from '../api/api'
-import NotificationBar from '../contexts/NotificationContext'
-import { login } from '../store/slice/userSlice'
+import { loginUser } from '../../api/api'
+import NotificationBar from '../../contexts/NotificationContext'
+import { login } from '../../store/slice/userSlice'
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function Login() {
