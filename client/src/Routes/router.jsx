@@ -27,6 +27,9 @@ const router = createBrowserRouter([
             }, 
             {
                 path: 'event',
+            }, 
+            {
+                path: 'event/:eventId', 
             }
         ]
     }, 
@@ -49,7 +52,7 @@ const router = createBrowserRouter([
                         path: 'event',
                     }, 
                     {
-                        path: 'event/:eventid',
+                        path: 'event/:eventId',
                     }, 
                     {
                         path: 'create-event',
