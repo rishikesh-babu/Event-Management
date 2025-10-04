@@ -2,6 +2,7 @@ const express = require('express')
 const userRouter = require('./userRoutes')
 const adminRouter = require('./adminRoutes')
 const eventRouter = require('./eventRoutes')
+const collageRouter = require('./collageRoutes')
 const router = express.Router()
 
 router.use((req, res, next) => {
@@ -13,7 +14,7 @@ router.use('/user', userRouter)
 router.use('/admin', adminRouter)
 router.use('/event', eventRouter)
 // router.use('/registration')
-// router.use('/collage')
+router.use('/collage', collageRouter)
 
 const apiRoute = router
 module.exports = apiRoute
