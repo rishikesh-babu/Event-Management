@@ -34,6 +34,23 @@ async function createEvent(req, res, next) {
     }
 }
 
+async function getEvents(req, res, next) {
+    try {
+        console.log('Router: Get Events')
+
+        const eventExist = await supabase.from('event').select('*')
+
+        if (!eventExist) {
+            return res.status(404).json({ message: 'Error in fetching event' })
+        }
+
+        return res.status(200).json({ message: 'Event fetched', data: eventExist })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
-    createEvent
+    createEvent,
+    getEvents
 }
