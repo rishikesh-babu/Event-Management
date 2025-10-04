@@ -13,6 +13,7 @@ router.use('/user', userRouter)
 router.use('/admin', adminRouter)
 router.use('/event', eventRouter)
 // router.use('/registration')
+// router.use('/collage')
 
 const apiRoute = router
 module.exports = apiRoute
