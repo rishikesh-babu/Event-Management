@@ -82,7 +82,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <nav className="sm:hidden absolute top-20 flex flex-col items-center gap-y-6 py-6 bg-white  shadow-md">
+        <nav className="sm:hidden absolute top-20 w-full flex flex-col items-center gap-y-6 py-6 bg-white  shadow-md">
           <Link to="/" className={getClass("/")}>
             Home
           </Link>
