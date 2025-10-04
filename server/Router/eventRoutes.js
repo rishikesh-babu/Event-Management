@@ -1,5 +1,5 @@
 const express = require('express')
-const { createEvent, getEvents } = require('../Controllers/eventController')
+const { createEvent, getEvents, getEventDetails } = require('../Controllers/eventController')
 const adminAuth = require('../Middlewares/adminAuth')
 const router = express.Router()
 
@@ -10,7 +10,7 @@ router.use((req, res, next) => {
 
 router.post('/create', adminAuth, createEvent)
 router.get('/get-events', getEvents)
-// router.get('get-event/:id')
+router.get('/get-event/:id', getEventDetails)
 
 const eventRouter = router
 module.exports = eventRouter

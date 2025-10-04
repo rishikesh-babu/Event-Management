@@ -59,9 +59,16 @@ async function getEventDetails(req, res, next) {
         const { id } = req.params
 
         if (!id) {
-            return res.status(404).json({ message: 'Collage or event id not found ❌' })
+            return res.status(404).json({ message: 'Event id is required ❌' })
         }
 
+        const eventExist = await supabase.from('events').select('*').eq('id', id).single()
+
+        if (eventExist.error) {
+            return res.status(404).json({ message: 'Failed to fetch event ', data: eventExist.error })
+        }
+
+        return res.status(200).json({ message: 'Event fetched successfully', data: eventExist.data })
     } catch (err) {
         next(err)
     }
@@ -69,5 +76,6 @@ async function getEventDetails(req, res, next) {
 
 module.exports = {
     createEvent,
-    getEvents
+    getEvents,
+    getEventDetails
 }
