@@ -40,8 +40,6 @@ async function getEvents(req, res, next) {
 
         const eventExist = await supabase.from('events').select('*')
 
-        console.log('eventExist :>> ', eventExist);
-
         if (eventExist.error) {
             return res.status(404).json({ message: 'Error in fetching event' })
         }
