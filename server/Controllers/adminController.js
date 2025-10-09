@@ -65,6 +65,10 @@ async function adminLogin(req, res, next) {
             return res.status(400).json({ message: 'Incorrect password' })
         }
 
+        if (adminData.role !== 'admin') {
+            return res.status(400).json({ message: 'Unauthorized admin' })
+        }
+
         delete adminData.password
 
         const token = generateToken(adminResponse.data)
