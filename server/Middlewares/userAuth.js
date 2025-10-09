@@ -21,9 +21,10 @@ async function userAuth(req, res, next) {
 
         const role = decodedToken.role
 
-        if (role !== 'user') {
-            return res.status(400).json({ message: 'Unauthorized User ❌ ' })
-        }
+        // Previlage for admin also
+        // if (role !== 'user') {
+        //     return res.status(400).json({ message: 'Unauthorized User ❌ ' })
+        // }
 
         req.user = decodedToken
         
@@ -32,3 +33,5 @@ async function userAuth(req, res, next) {
         next(err)
     }
 }
+
+module.exports = userAuth
