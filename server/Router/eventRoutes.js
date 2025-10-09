@@ -1,5 +1,5 @@
 const express = require('express')
-const { createEvent, getEvents, getEventDetails } = require('../Controllers/eventController')
+const { createEvent, getEvents, getEventDetails, deleteEvent } = require('../Controllers/eventController')
 const adminAuth = require('../Middlewares/adminAuth')
 const router = express.Router()
 
@@ -8,10 +8,11 @@ router.use((req, res, next) => {
     next()
 })
 
-router.post('/create', adminAuth, createEvent)
-router.get('/get-events', getEvents)
-router.get('/get-event/:id', getEventDetails)
-// router.put('/update/:id')
+router.post('/', adminAuth, createEvent)
+router.get('/', getEvents)
+router.get('/:id', getEventDetails)
+// router.put('/:id', adminAuth)
+router.delete('/:id', deleteEvent)
 
 const eventRouter = router
 module.exports = eventRouter

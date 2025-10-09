@@ -14,7 +14,7 @@ async function createEvent(req, res, next) {
             return res.status(400).json({ message: 'All fields are required and seat must be > 0' })
         }
 
-        const collageResponse = await supabase.from('collage').select('*').eq('id', collageId).single()
+        const collageResponse = await supabase.from('collages').select('*').eq('id', collageId).single()
         const collageExist = collageResponse.data
 
         if (!collageExist) {
@@ -74,8 +74,31 @@ async function getEventDetails(req, res, next) {
     }
 }
 
+async function deleteEvent(req, res, next) {
+    try {
+        console.log('Router: Delete')
+
+        const { id } = req.params
+
+        if (!id) {
+            return res.status(400).json({ message: 'Event Id is required' })
+        }
+
+        const deleteEvent = await supabase.from('events').delete().eq('id', id)
+
+        if (deleteEvent.error) {
+            return res.status(400).json({ message: 'Error in deleting event', data: deleteEvent.error })
+        }
+
+        return res.status(200).json({ message: 'Event deleted successfully ✅' })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
     createEvent,
     getEvents,
-    getEventDetails
+    getEventDetails, 
+    deleteEvent
 }
