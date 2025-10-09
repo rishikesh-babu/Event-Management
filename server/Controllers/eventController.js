@@ -85,8 +85,8 @@ async function deleteEvent(req, res, next) {
         }
 
         const deleteEvent = await supabase.from('events').delete().eq('id', id)
-
-        if (deleteEvent.error) {
+        
+        if (deleteEvent.error || !deleteEvent.data) {
             return res.status(400).json({ message: 'Error in deleting event', data: deleteEvent.error })
         }
 
