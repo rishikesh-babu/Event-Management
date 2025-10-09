@@ -91,7 +91,13 @@ async function deleteRegistration(req, res, next) {
             return res.status(400).json({ message: 'Event id is reqired' })
         }
 
-        const deleteRegistration = await supabase.from('registration').delete().eq('event')
+        const deleteRegistration = await supabase.from('registrations').delete().eq('eventId', eventId).eq('userId', userId).select('*').single()
+
+        if (deleteRegistration.error) {
+            return res.status(400).json({ message: 'Error in deleting registered event ', data: deleteRegistration.error })
+        }
+
+        return res.status(200).json({ message: 'Registeration deleted successfully ✅' })
     } catch (err) {
         next(err)
     }
@@ -99,5 +105,6 @@ async function deleteRegistration(req, res, next) {
 
 module.exports = {
     registerEvent,
-    updateRegistration
+    updateRegistration,
+    deleteRegistration
 }
