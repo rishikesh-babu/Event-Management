@@ -73,7 +73,13 @@ const router = createBrowserRouter([
                     {
                         path: 'create-event',
                         element: <AdminCreateEvent />
+                    },
+                    {
+                        path:'collage',
                     }, 
+                    {
+                        path: 'create-collage',
+                    }
                 ]
             }
         ]
