@@ -1,5 +1,5 @@
 const express = require('express')
-const { registerEvent } = require('../Controllers/registrationController')
+const { registerEvent, updateRegistration } = require('../Controllers/registrationController')
 const userAuth = require('../Middlewares/userAuth')
 const router = express.Router()
 
@@ -9,6 +9,7 @@ router.use((req, res, next) => {
 })
 
 router.post('/:id', userAuth, registerEvent)
+router.put('/:id', userAuth, updateRegistration)
 
 const registrationRouter = router
 module.exports = registrationRouter

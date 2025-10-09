@@ -34,7 +34,7 @@ async function registerEvent(req, res, next) {
             return res.status(400).json({ message: 'Seat is not available' })
         }
 
-        const registeredUser = registrations.data.find((item) => item.userId === userId)     
+        const registeredUser = registrations.data.find((item) => item.userId === userId)
         if (registeredUser) {
             return res.status(400).json({ message: 'User already registered' })
         }
@@ -50,6 +50,37 @@ async function registerEvent(req, res, next) {
     }
 }
 
+async function updateRegistration(req, res, next) {
+    try {
+        console.log('Router: Update')
+
+        const { id: eventId } = req.params
+        const { id: userId } = req.user
+        const { status } = req.body
+
+        if (!eventId) {
+            return res.status(400).json({ message: 'Event id is required' })
+        }
+
+        if (!status) {
+            return res.status(400).json({ message: 'Required status updatation value' })
+        }
+
+        const userRegister = await supabase.from('registrations').update({ status }).eq('eventId', eventId).select('*')
+
+        console.log('userRegister :>> ', userRegister);
+
+        if (userRegister.error) {
+            return res.status(400).json({ message: 'Updation failed', data: userRegister.error })
+        }
+
+        return res.status(200).json({ message: 'Updated Successfully', data: userRegister.data })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
-    registerEvent
+    registerEvent,
+    updateRegistration
 }
