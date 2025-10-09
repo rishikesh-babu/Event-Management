@@ -66,7 +66,7 @@ async function updateRegistration(req, res, next) {
             return res.status(400).json({ message: 'Required status updatation value' })
         }
 
-        const userRegister = await supabase.from('registrations').update({ status }).eq('eventId', eventId).select('*')
+        const userRegister = await supabase.from('registrations').update({ status }).eq('eventId', eventId).eq('userId', userId).select('*')
 
         console.log('userRegister :>> ', userRegister);
 
@@ -75,6 +75,23 @@ async function updateRegistration(req, res, next) {
         }
 
         return res.status(200).json({ message: 'Updated Successfully', data: userRegister.data })
+    } catch (err) {
+        next(err)
+    }
+}
+
+async function deleteRegistration(req, res, next) {
+    try {
+        console.log('Router: delete')
+
+        const { id: eventId } = req.params
+        const { id: userId } = req.user
+
+        if (!eventId) {
+            return res.status(400).json({ message: 'Event id is reqired' })
+        }
+
+        const deleteRegistration = await supabase.from('registration').delete().eq('event')
     } catch (err) {
         next(err)
     }

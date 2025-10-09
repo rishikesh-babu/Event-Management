@@ -10,6 +10,7 @@ router.use((req, res, next) => {
 
 router.post('/:id', userAuth, registerEvent)
 router.put('/:id', userAuth, updateRegistration)
+router.delete('/:id', userAuth)
 
 const registrationRouter = router
 module.exports = registrationRouter
