@@ -79,6 +79,9 @@ const router = createBrowserRouter([
                     }, 
                     {
                         path: 'create-collage',
+                    }, 
+                    {
+                        path: 'user'
                     }
                 ]
             }
