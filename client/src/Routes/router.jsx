@@ -16,6 +16,7 @@ import About from "../Pages/User/About";
 import AdminCollage from "../Pages/Admin/AdminCollage";
 import AdminCreateCollage from "../Pages/Admin/AdminCreateCollage";
 import AdminUser from "../Pages/Admin/AdminUser";
+import Profile from "../Pages/User/Profile";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: 'event/:eventId',
                 element: <EventDetails />
+            }, 
+            {
+                path: 'profile', 
+                element: <Profile />
             }
         ]
     }, 
