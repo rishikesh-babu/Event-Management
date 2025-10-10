@@ -12,7 +12,7 @@ router.post('/', adminAuth, createEvent)
 router.get('/', getEvents)
 router.get('/:id', getEventDetails)
 // router.put('/:id', adminAuth)
-router.delete('/:id', deleteEvent)
+router.delete('/:id', adminAuth, deleteEvent)
 
 const eventRouter = router
 module.exports = eventRouter
