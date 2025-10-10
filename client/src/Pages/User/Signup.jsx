@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { signupUser } from '../../api/api'
-import NotificationBar from '../../contexts/NotificationContext'
 export default function Signup() {
 
     const navigate = useNavigate()
@@ -32,12 +31,6 @@ export default function Signup() {
         isSame: false
 
     })
-    const [notification, setNotification] = useState({ message: "", type: "" })
-
-    const showNotification = (msg, type) => {
-        setNotification({ message: '' }) 
-        setTimeout(() => setNotification({ message: msg, type }), 10)
-    }
 
 
     useEffect(() => {
@@ -161,20 +154,19 @@ export default function Signup() {
         try {
             const result = await signupUser(payload)
             if (result.error) {
-                showNotification(result.error, "warning")
+                console.log(result.error)
             } else {
-                showNotification("Signup successful!", "success")
+                
                 setTimeout(() => navigate("/login"), 1000)
             }
         } catch (err) {
-            showNotification(err.message || "Something went wrong", "error")
+            console.log(err)
         } finally {
             setIsSubmitting(false)
         }
     }
     return (
         <div className="max-w-2xl mx-auto  mt-24 bg-white rounded-xl shadow-2xl p-8">
-            <NotificationBar message={notification.message} type={notification.type} />
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Create Account</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">

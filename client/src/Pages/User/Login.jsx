@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../../api/api'
-import NotificationBar from '../../contexts/NotificationContext'
 import { saveUserData } from '../../store/slice/userSlice'
 import { useDispatch } from 'react-redux';
 
@@ -13,13 +12,9 @@ export default function Login() {
     })
     const [formErrors, setFormErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [notification, setNotification] = useState({ message: "", type: "" })
     const dispatch = useDispatch()
 
-    const showNotification = (msg, type) => {
-        setNotification({ message: '' })
-        setTimeout(() => setNotification({ message: msg, type }), 10)
-    }
+
 
     const handleChange = (e) => {
         setCredentials({
@@ -47,7 +42,6 @@ export default function Login() {
         try {
             const result = await loginUser(credentials)
             if (result.success) {
-                showNotification("Logged successfully!", "success")
                 dispatch(saveUserData({
                     id: result.data.id,
                     name: result.data.name,
@@ -56,11 +50,9 @@ export default function Login() {
                 setTimeout(() => navigate('/'), 500)
             } else {
                 setFormErrors({ general: result.message || "Login failed" })
-                showNotification(result.message || "Login failed", "error")
             }
         } catch (err) {
             setFormErrors({ general: err.message || "Something went wrong" })
-            showNotification(err.message || "Something went wrong", "error")
         } finally {
             setIsSubmitting(false)
         }
@@ -73,7 +65,6 @@ export default function Login() {
 
     return (
         <div className="max-w-md mx-auto mt-24 bg-white rounded-xl shadow-2xl p-8">
-            <NotificationBar message={notification.message} type={notification.type} />
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Login</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">

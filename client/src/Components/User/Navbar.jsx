@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUserData } from "../../store/slice/userSlice";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Navbar() {
 
@@ -11,6 +12,7 @@ export default function Navbar() {
 
   const [active, setActive] = useState(location.pathname);
   const [open, setOpen] = useState(false);
+  const [profileDropdown, setProfileDropdown] = useState(false);
 
   useEffect(() => {
     setActive(location.pathname);
@@ -22,7 +24,7 @@ export default function Navbar() {
   };
 
   const getClass = (path) =>
-    path === active ? "text-blue-700 font-bold ring ring-blue-700 rounded-2xl px-4 py-2" : "text-gray-600 hover:text-blue-600 px-4 py-2";
+    path === active ? "text-blue-700 font-bold  rounded-2xl px-4 py-2 text-md md:text-lg" : "text-gray-700 hover:text-blue-600 trasition px-4 py-2 text-md md:text-lg ";
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
@@ -35,8 +37,8 @@ export default function Navbar() {
           <Link to="/" className={getClass("/")}>
             Home
           </Link>
-          <Link to="/about" className={getClass("/about")}>
-            About
+          <Link to="/event" className={getClass("/event")}>
+            Events
           </Link>
           {user.isAdmin && (
             <Link to="/admin" className={getClass("/admin")}>
@@ -45,12 +47,32 @@ export default function Navbar() {
           )}
 
           {user.isLoggedIn ? (
-            <button
-              onClick={handleLogout}
-              className="text-red-500 px-4 py-2 ring ring-red-500 rounded-2xl hover:bg-red-600 hover:text-white"
-            >
-              Logout
-            </button>
+            <div className="relative items-center">
+              <button
+                onClick={() => setProfileDropdown(!profileDropdown)}
+                className="mt-1 rounded-full hover:bg-gray-100 transition"
+              >
+                <UserCircleIcon className="w-10 h-10 text-gray-600 hover:text-blue-600 transition" />
+              </button>
+
+              {profileDropdown && (
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-4 w-40 bg-white border rounded-b-lg shadow-lg flex flex-col py-2">
+                  <Link
+                    to="/profile"
+                    onClick={() => setProfileDropdown(false)}
+                    className={getClass("/profile")}
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="text-left px-4 py-2 text-red-600 hover:bg-red-50"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <Link
               to="/login"
@@ -86,8 +108,8 @@ export default function Navbar() {
           <Link to="/" className={getClass("/")}>
             Home
           </Link>
-          <Link to="/about" className={getClass("/about")}>
-            About
+          <Link to="/event" className={getClass("/event")}>
+            Events
           </Link>
           {user.isAdmin && (
             <Link to="/admin" className={getClass("/admin")}>
@@ -96,12 +118,17 @@ export default function Navbar() {
           )}
 
           {user.isLoggedIn ? (
-            <button
-              onClick={handleLogout}
-              className="text-red-500 px-6 py-2 ring ring-red-500 rounded-2xl hover:bg-red-600 hover:text-white"
-            >
-              Logout
-            </button>
+            <div className="w-full flex flex-col items-center gap-y-6 ">
+              <Link to="/profile" className={getClass("/profile")}>
+                Profile
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="text-red-500 px-6 py-2 ring ring-red-500 rounded-2xl hover:bg-red-600 hover:text-white"
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <Link
               to="/login"
@@ -110,6 +137,7 @@ export default function Navbar() {
               Login
             </Link>
           )}
+
         </nav>
       )}
     </header>
