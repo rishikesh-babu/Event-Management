@@ -13,6 +13,9 @@ import AdminCreateEvent from "../Pages/Admin/AdminCreateEvent";
 import Event from "../Pages/User/Event";
 import EventDetails from "../Pages/User/EventDetails";
 import About from "../Pages/User/About";
+import AdminCollage from "../Pages/Admin/AdminCollage";
+import AdminCreateCollage from "../Pages/Admin/AdminCreateCollage";
+import AdminUser from "../Pages/Admin/AdminUser";
 
 const router = createBrowserRouter([
     {
@@ -75,13 +78,16 @@ const router = createBrowserRouter([
                         element: <AdminCreateEvent />
                     },
                     {
-                        path:'collage',
+                        path:'collage', 
+                        element: <AdminCollage />
                     }, 
                     {
-                        path: 'create-collage',
+                        path: 'create-collage', 
+                        element: <AdminCreateCollage />
                     }, 
                     {
-                        path: 'user'
+                        path: 'user', 
+                        element: <AdminUser />
                     }
                 ]
             }
