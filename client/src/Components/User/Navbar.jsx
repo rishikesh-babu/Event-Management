@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store/slice/userSlice";
+import { clearUserData } from "../../store/slice/userSlice";
 
 export default function Navbar() {
 
@@ -18,7 +18,7 @@ export default function Navbar() {
   }, [location.pathname]);
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(clearUserData());
   };
 
   const getClass = (path) =>

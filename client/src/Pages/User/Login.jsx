@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../../api/api'
 import NotificationBar from '../../contexts/NotificationContext'
-import { login } from '../../store/slice/userSlice'
-import { useSelector, useDispatch } from 'react-redux';
+import { saveUserData } from '../../store/slice/userSlice'
+import { useDispatch } from 'react-redux';
 
 export default function Login() {
     const navigate = useNavigate()
@@ -48,7 +48,7 @@ export default function Login() {
             const result = await loginUser(credentials)
             if (result.success) {
                 showNotification("Logged successfully!", "success")
-                dispatch(login({
+                dispatch(saveUserData({
                     id: result.data.id,
                     name: result.data.name,
                     isAdmin: result.data.role === 'admin' ? true : false
