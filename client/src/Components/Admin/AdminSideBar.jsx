@@ -1,25 +1,32 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function AdminSideBar() {
 
     const content = [
         {
-            name: 'Home' 
+            name: 'Home',
+            link: '/admin'
         },
         {
-            name: 'Events'
+            name: 'Events',
+            link: '/admin/event'
         },
         {
-            name: 'Create Event'
-        }, 
-        {
-            name: 'Collages'
+            name: 'Create Event', 
+            link: '/admin/create-event'
         },
         {
-            name: 'Create Collage'
+            name: 'Collages', 
+            link: '/admin/collage'
         },
         {
-            name: 'Users'
+            name: 'Create Collage', 
+            link: '/admin/create-collage' 
+        },
+        {
+            name: 'Users', 
+            link: '/admin/user'
         }
     ]
 
@@ -28,11 +35,11 @@ export default function AdminSideBar() {
             <div>
                 Dashboard
             </div>
-            <div>
+            <div className=' flex flex-col'>
                 {content.map((item, index) => (
-                    <div key={index}>
+                    <Link to={item.link} key={index}>
                         {item.name}
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
