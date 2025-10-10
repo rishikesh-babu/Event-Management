@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, CalendarDays, PlusCircle, Building2, Users, User } from 'lucide-react'
+import { Home, CalendarDays, PlusCircle, Building2, Users, User, ChevronLeft } from 'lucide-react'
 
-export default function AdminSideBar({ openSideBar }) {
+export default function AdminSideBar({ openSideBar, toggleSideBar }) {
     const location = useLocation()
+    const screenSize = window.innerWidth
 
     const content = [
         {
@@ -39,14 +40,19 @@ export default function AdminSideBar({ openSideBar }) {
     ]
 
     return (
-        <div className={`p-4 h-[100dvh] border-r flex flex-col gap-4 transition-all duration-1000 ${openSideBar ? 'w-64 opacity-100' : 'w-0 opacity-0'}`}>
+        <div className={`fixed top-0 left-0 h-[100dvh] bg-white border-r flex flex-col gap-4 transition-all duration-500 shadow-md overflow-hidden ${openSideBar ? 'w-52' : 'w-0'}`} >
             <div className='p-3 flex items-center gap-3 rounded-xl shadow-md'>
                 <div className='p-2 bg-gray-300 rounded-full'>
                     <User size={25} />
                 </div>
+
                 <div>
-                    <h2 className='text-lg font-semibold'>Admin</h2>
+                    <h2 className='text-lg font-semibold'>Admin {screenSize} </h2>
                     <p className='text-xs text-gray-300'>Administrator Panel</p>
+                </div>
+
+                <div onClick={toggleSideBar} className='absolute right-[-16px] p-1 bg-gray-200 rounded-full'>
+                    <ChevronLeft size={25} />
                 </div>
             </div>
 
