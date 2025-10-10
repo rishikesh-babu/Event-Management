@@ -2,8 +2,7 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Home, CalendarDays, PlusCircle, Building2, Users, User } from 'lucide-react'
 
-export default function AdminSideBar() {
-
+export default function AdminSideBar({ openSideBar }) {
     const location = useLocation()
 
     const content = [
@@ -40,7 +39,7 @@ export default function AdminSideBar() {
     ]
 
     return (
-        <div className='p-4 h-[100dvh] border-r flex flex-col gap-4'>
+        <div className={`p-4 h-[100dvh] border-r flex flex-col gap-4 transition-all duration-1000 ${openSideBar ? 'w-64 opacity-100' : 'w-0 opacity-0'}`}>
             <div className='p-3 flex items-center gap-3 rounded-xl shadow-md'>
                 <div className='p-2 bg-gray-300 rounded-full'>
                     <User size={25} />
