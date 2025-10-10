@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, CalendarDays, PlusCircle, Building2, Users } from 'lucide-react'
+import { Home, CalendarDays, PlusCircle, Building2, Users, User } from 'lucide-react'
 
 export default function AdminSideBar() {
 
@@ -40,9 +40,15 @@ export default function AdminSideBar() {
     ]
 
     return (
-        <div className='p-4 h-[100dvh] border-r bg-white flex flex-col gap-4'>
-            <div className='font-bold text-2xl mb-4'>
-                Dashboard
+        <div className='p-4 h-[100dvh] border-r flex flex-col gap-4'>
+            <div className='p-3 flex items-center gap-3 rounded-xl shadow-md'>
+                <div className='p-2 bg-gray-300 rounded-full'>
+                    <User size={25} />
+                </div>
+                <div>
+                    <h2 className='text-lg font-semibold'>Admin</h2>
+                    <p className='text-xs text-gray-300'>Administrator Panel</p>
+                </div>
             </div>
 
             <div className='flex flex-col gap-2'>
