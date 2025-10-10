@@ -8,7 +8,7 @@ export default function AdminLayout() {
     return (
         <div className=' flex'>
             <AdminSideBar />
-            <div>
+            <div className='flex-1'>
                 <AdminHeader />
                 <Outlet />
                 <AdminFooter />
