@@ -5,7 +5,7 @@ import AdminFooter from '../Components/Admin/AdminFooter'
 import AdminSideBar from '../Components/Admin/AdminSideBar'
 
 export default function AdminLayout() {
-    const [openSideBar, setOpenSideBar] = useState(true)
+    const [openSideBar, setOpenSideBar] = useState(false)
 
     function toggleSideBar() {
         setOpenSideBar(!openSideBar)
