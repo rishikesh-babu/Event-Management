@@ -24,7 +24,23 @@ export default function AdminCollage() {
     }
     return (
         <div className="m-2 py-4 px-1 sm:px-4 max-w-2xl mx-auto bg-gray-100 rounded-xl shadow-sm">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Colleges</h1>
+            <h1 className="mb-6 text-3xl font-bold text-gray-800 text-center">Colleges</h1>
+
+            <div className="mb-6 flex flex-row items-center justify-between gap-3">
+                <input
+                    type="text"
+                    // value={collegeName}
+                    // onChange={(e) => setCollegeName(e.target.value)}
+                    placeholder="Enter college name"
+                    className="px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+                />
+                <button
+                    // onClick={handleAddCollege}
+                    className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-all"
+                >
+                    Add
+                </button>
+            </div>
 
             {/* Loading State */}
             {collages.length === 0 ? (
