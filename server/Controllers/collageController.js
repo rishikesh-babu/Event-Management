@@ -26,6 +26,23 @@ async function createCollage(req, res, next) {
     }
 }
 
+async function getCollages(req, res, next) {
+    try {
+        console.log('Router: Get Collages')
+
+        const collageExist = await supabase.from('collages').select('*')
+
+        if (collageExist.error) {
+            return res.status(400).json({ message: 'Error in fetching collages', data: collageExist.error })
+        }
+
+        return res.status(200).json({ message: 'Data fetched', data: collageExist.data })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
-    createCollage
+    createCollage, 
+    getCollages
 }
