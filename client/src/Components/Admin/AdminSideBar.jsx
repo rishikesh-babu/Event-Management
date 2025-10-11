@@ -40,7 +40,7 @@ export default function AdminSideBar({ openSideBar, toggleSideBar }) {
     ]
 
     return (
-        <div className={`${screenSize < 600 ? 'absolute' : ''} top-0 left-0 h-[100dvh] bg-white border-r flex flex-col gap-4 transition-all duration-500 shadow-md ${openSideBar ? 'w-52 z-30' : 'w-0 opacity-0 z-0 '}`} >
+        <div className={`${(screenSize < 600 || !openSideBar) && 'absolute'} top-0 left-0 p-4 h-[100dvh] bg-white border-r border flex flex-col gap-4 transition-all duration-500 shadow-md ${openSideBar ? 'w-60 z-30' : 'w-0 opacity-0 z-0 '}`} >
             <div className='relative p-3 flex items-center gap-3 rounded-xl shadow-md'>
                 <div className='p-2 bg-gray-300 rounded-full'>
                     <User size={25} />
@@ -51,9 +51,11 @@ export default function AdminSideBar({ openSideBar, toggleSideBar }) {
                     <p className='text-xs text-gray-300'>Administrator Panel</p>
                 </div>
 
-                <div onClick={toggleSideBar} className='absolute right-[-16px] p-1 bg-gray-200 rounded-full'>
-                    <ChevronLeft size={25} />
-                </div>
+                {screenSize < 600 && (
+                    <div onClick={toggleSideBar} className='absolute right-[-16px] p-1 bg-gray-200 rounded-full'>
+                        <ChevronLeft size={25} />
+                    </div>
+                )}
             </div>
 
             <div className='flex flex-col gap-2'>
@@ -62,6 +64,7 @@ export default function AdminSideBar({ openSideBar, toggleSideBar }) {
                         to={item.link}
                         key={index}
                         className={`p-2 flex items-center gap-3 rounded-lg hover:bg-gray-100 transition-colors ${location.pathname === item.link ? 'bg-gray-200 font-semibold' : ''}`}
+                        onClick={() => screenSize < 600 && toggleSideBar()}
                     >
                         {item.icon}
                         <span>{item.name}</span>

@@ -12,7 +12,7 @@ export default function AdminLayout() {
     }
 
     return (
-        <div className="flex">
+        <div className={`flex`}>
             {/* Sidebar */}
             <AdminSideBar openSideBar={openSideBar} toggleSideBar={toggleSideBar} />
 
