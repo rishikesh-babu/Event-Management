@@ -28,11 +28,6 @@ export default function AdminSideBar({ openSideBar, toggleSideBar }) {
             icon: <Building2 size={20} />
         },
         {
-            name: 'Create Collage',
-            link: '/admin/create-collage',
-            icon: <PlusCircle size={20} />
-        },
-        {
             name: 'Users',
             link: '/admin/user',
             icon: <Users size={20} />
