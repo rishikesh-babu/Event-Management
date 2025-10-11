@@ -17,7 +17,7 @@ export default function AdminLayout() {
             <AdminSideBar openSideBar={openSideBar} toggleSideBar={toggleSideBar} />
 
             {/* Main Content */}
-            <main className={`flex-1 transition-all duration-500 ${openSideBar ? 'ml-52' : 'ml-0'}`} >
+            <main className={`z-20 min-h-[100dvh] flex-1 transition-all duration-500 `} >
                 <AdminHeader toggleSideBar={toggleSideBar} />
                 <div>
                     <Outlet />
