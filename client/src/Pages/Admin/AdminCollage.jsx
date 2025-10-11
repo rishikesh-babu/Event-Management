@@ -23,8 +23,7 @@ export default function AdminCollage() {
             })
     }
     return (
-        <div className="m-2 bg-gray-100 rounded-xl">
-            {/* Header */}
+        <div className="m-2 p-4 bg-gray-100 rounded-xl shadow-sm">
             <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Colleges</h1>
 
             {/* Loading State */}
@@ -33,22 +32,30 @@ export default function AdminCollage() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div>
-                    <div className='p-3 grid grid-cols-[50px_1fr_100px]'>
+                <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200">
+                    <div className="p-3 font-semibold text-gray-700 text-lg bg-gray-200 grid grid-cols-[40px_1fr_160px] border-b border-gray-300">
                         <span>#</span>
-                        <div>Name</div>
-                        <div>Action</div>
+                        <span>Name</span>
+                        <span className="text-center">Actions</span>
                     </div>
-                    
-                    {collages?.map((item, index) => (
-                        <div className='p-3 grid grid-cols-[50px_1fr_100px] ' key={item?.id}>
+
+                    {collages.map((item, index) => (
+                        <div key={item?.id} className={`p-3 grid grid-cols-[40px_1fr_160px] items-center text-gray-800 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition-all border-b last:border-b-0`}>
                             <div>{index + 1}</div>
-                            <div>{item?.name}</div>
-                            <div>
-                                <button>
+
+                            <div className="font-medium">{item?.name}</div>
+
+                            <div className="flex justify-center space-x-3">
+                                <button
+                                    onClick={() => handleEdit(item)}
+                                    className="px-3 py-1 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600 transition-all"
+                                >
                                     Edit
                                 </button>
-                                <button>
+                                <button
+                                    onClick={() => handleDelete(item.id)}
+                                    className="px-3 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600 transition-all"
+                                >
                                     Delete
                                 </button>
                             </div>
@@ -57,6 +64,5 @@ export default function AdminCollage() {
                 </div>
             )}
         </div>
-
     )
 }
