@@ -23,7 +23,7 @@ export default function AdminCollage() {
             })
     }
     return (
-        <div className="m-2 p-4 bg-gray-100 rounded-xl shadow-sm">
+        <div className="m-2 pt-4 px-1 bg-gray-100 rounded-xl shadow-sm">
             <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Colleges</h1>
 
             {/* Loading State */}
