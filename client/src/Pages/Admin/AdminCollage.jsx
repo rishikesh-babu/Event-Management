@@ -23,7 +23,7 @@ export default function AdminCollage() {
             })
     }
     return (
-        <div className="m-2 pt-4 px-1 bg-gray-100 rounded-xl shadow-sm">
+        <div className="m-2 py-4 px-1 sm:px-4 max-w-2xl mx-auto bg-gray-100 rounded-xl shadow-sm">
             <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Colleges</h1>
 
             {/* Loading State */}
@@ -32,8 +32,8 @@ export default function AdminCollage() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200">
-                    <div className="p-3 font-semibold text-gray-700 text-lg bg-gray-200 grid grid-cols-[40px_1fr_160px] border-b border-gray-300">
+                <div className="">
+                    <div className="p-3 font-semibold text-gray-700 text-lg bg-gray-300/60 rounded-t-lg grid grid-cols-[40px_1fr_160px] border-b border-gray-300">
                         <span>#</span>
                         <span>Name</span>
                         <span className="text-center">Actions</span>
