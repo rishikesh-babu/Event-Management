@@ -8,8 +8,6 @@ const port = 3000
 dotenv.config()
 const app = express()
 
-console.log('process.env.BASE_URL :>> ', process.env.BASE_URL);
-
 app.use(cors({
     origin: process.env.BASE_URL,
     methods: ['GET', 'POST', 'DELETE', 'PUT'],

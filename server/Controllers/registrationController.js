@@ -103,8 +103,31 @@ async function deleteRegistration(req, res, next) {
     }
 }
 
+async function getRegistrations(req, res, next) {
+    try {
+        console.log('Router: Get Registrations')
+
+        const { id } = req.params
+
+        if (!id) {
+            return res.status(400).json({ message: 'Event id is required' })
+        }
+
+        const registrations = await supabase.from('registrations').select('*').eq('eventId', id)
+
+        if (registrations.error) {
+            return res.status(400).json({ message: 'Error in fetching details', data: registrations.error })
+        }
+
+        return res.status(200).json({ message: 'Registrations fetched', data: registrations.data })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
     registerEvent,
     updateRegistration,
-    deleteRegistration
+    deleteRegistration, 
+    getRegistrations
 }

@@ -1,5 +1,5 @@
 const express = require('express')
-const { registerEvent, updateRegistration, deleteRegistration } = require('../Controllers/registrationController')
+const { registerEvent, updateRegistration, deleteRegistration, getRegistrations } = require('../Controllers/registrationController')
 const userAuth = require('../Middlewares/userAuth')
 const router = express.Router()
 
@@ -9,6 +9,7 @@ router.use((req, res, next) => {
 })
 
 router.post('/:id', userAuth, registerEvent)
+router.get('/:id', getRegistrations)
 router.put('/:id', userAuth, updateRegistration)
 router.delete('/:id', userAuth, deleteRegistration)
 

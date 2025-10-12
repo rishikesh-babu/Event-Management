@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axiosInstance from '../../Config/axiosInstance'
-import { Calendar, Clock } from 'lucide-react'
+import { Calendar, Clock, IndianRupee, Users } from 'lucide-react'
 
 export default function EventDetails() {
     const { id } = useParams()
     const [eventDetails, setEventDetails] = useState()
+    const [registrations, setRegistrations] = useState([])
 
     useEffect(() => {
         fetchEventDetails()
+        fetchRegistrations()
     }, [])
 
-    console.log('eventDetails :>> ', eventDetails);
+    console.log('registrations :>> ', registrations);
 
     function fetchEventDetails() {
         axiosInstance({
@@ -26,16 +28,37 @@ export default function EventDetails() {
             })
     }
 
+    function calculateAvailableSeat() {
+        if (registrations.length !== 0) {
+            const availableSeat = eventDetails.seat - registrations.length
+            return availableSeat
+        }
+    }
+
+    function fetchRegistrations() {
+        axiosInstance({
+            method: 'GET',
+            url: `/registration/${id}`
+        })
+            .then((res) => {
+                setRegistrations(res?.data?.data)
+            })
+            .catch((err) => {
+                console.log('err :>> ', err);
+            })
+    }
+
     function formatDate(dateStr) {
         const date = new Date(dateStr)
 
-        const formattedDate = date.toLocaleDateString("en-US", {
-            weekday: "long",    // "Wednesday"
-            year: "numeric",    // "2023"
-            month: "long",      // "November"
-            day: "numeric"      // "15"
-        })
-        return formattedDate
+        const day = date.toLocaleDateString("en-US", { weekday: "long" })
+        const dayNum = date.getDate().toString()
+        const month = date.toLocaleDateString("en-US", { month: "long" })
+        const year = date.getFullYear().toString()
+
+        const result = [day, dayNum, month, year]
+        console.log(result)
+        return result
     }
 
     function formatTime(timeStr) {
@@ -52,7 +75,8 @@ export default function EventDetails() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div className='p-1'>
+                <div className='p-1 flex flex-col gap-3'>
+                    {/* Title and short details */}
                     <div className=' text-white bg-[url("https://picsum.photos/1200/400?random=1")] rounded-2xl '>
                         <div className=' min-h-[85vh] bg-black/70 rounded-2xl flex flex-col justify-center items-center gap-7 sm:gap-9 '>
                             <div className='px-6 py-2 font-semibold sm:text-xl capitalize bg-primary rounded-full shadow-[0px_0px_10px_#00ffff]'>
@@ -77,6 +101,40 @@ export default function EventDetails() {
                             <button className='px-6 py-2 text-2xl sm:text-3xl bg-green-500 rounded-xl shadow-[0px_0px_10px_#00ffff] hover:scale-105 transition-all duration-300'>
                                 Register
                             </button>
+                        </div>
+                    </div>
+
+                    <div className='p-4 border rounded-xl shadow-lg flex flex-row justify-around'>
+                        <div className=' flex flex-col items-center'>
+                            <Users className=' size-8 text-indigo-600' />
+                            <span className=' font-bold text-2xl'>
+                                {calculateAvailableSeat()}
+                            </span>
+                            <span className=' text-gray-500'>
+                                Seat Available
+                            </span>
+                        </div>
+
+                        <div className='flex flex-col items-center'>
+                            <IndianRupee className='size-8 text-indigo-600' />
+                            <span className='font-bold text-2xl'>
+                                {eventDetails?.fee ? eventDetails?.fee : 'FREE'}
+                            </span>
+                            <span className='text-gray-500'>
+                                Registration Fee
+                            </span>
+                        </div>
+
+                        <div className='flex flex-col items-center'>
+                            <Calendar className='size-8 text-indigo-600' />
+                            <span className='font-bold text-2xl '>
+                                {formatDate(eventDetails?.date)[2].slice(0, 3)}
+                                {' '}
+                                {formatDate(eventDetails?.date)[1]}
+                            </span>
+                            <span className='text-gray-500'>
+                                Registration Deadline
+                            </span>
                         </div>
                     </div>
                 </div>
