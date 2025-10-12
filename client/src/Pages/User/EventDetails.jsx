@@ -29,10 +29,8 @@ export default function EventDetails() {
     }
 
     function calculateAvailableSeat() {
-        if (registrations.length !== 0) {
-            const availableSeat = eventDetails.seat - registrations.length
-            return availableSeat
-        }
+        const availableSeat = eventDetails.seat - registrations.length
+        return availableSeat
     }
 
     function fetchRegistrations() {
@@ -75,9 +73,9 @@ export default function EventDetails() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div className='p-1 flex flex-col gap-5'>
+                <div className='p-1 sm:p-3 md:p-5 flex flex-col gap-5'>
                     {/* Title and short details */}
-                    <div className=' text-white bg-[url("https://picsum.photos/1200/400?random=1")] rounded-2xl '>
+                    <div className=' text-white bg-[url("https://picsum.photos/1200/400?random=1")] bg-cover rounded-2xl '>
                         <div className=' min-h-[85vh] bg-black/70 rounded-2xl flex flex-col justify-center items-center gap-7 sm:gap-9 '>
                             <div className='px-6 py-2 font-semibold sm:text-xl capitalize bg-primary rounded-full shadow-[0px_0px_10px_#00ffff]'>
                                 {eventDetails?.type}
@@ -110,7 +108,7 @@ export default function EventDetails() {
                             <span className=' font-bold text-2xl'>
                                 {calculateAvailableSeat()}
                             </span>
-                            <span className=' text-gray-500'>
+                            <span className=' text-gray-500 text-center'>
                                 Seat Available
                             </span>
                         </div>
@@ -120,7 +118,7 @@ export default function EventDetails() {
                             <span className='font-bold text-2xl'>
                                 {eventDetails?.fee ? eventDetails?.fee : 'FREE'}
                             </span>
-                            <span className='text-gray-500'>
+                            <span className='text-gray-500 text-center'>
                                 Registration Fee
                             </span>
                         </div>
@@ -132,7 +130,7 @@ export default function EventDetails() {
                                 {' '}
                                 {formatDate(eventDetails?.date)[1]}
                             </span>
-                            <span className='text-gray-500'>
+                            <span className='text-gray-500 text-center'>
                                 Registration Deadline
                             </span>
                         </div>
