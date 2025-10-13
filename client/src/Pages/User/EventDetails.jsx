@@ -100,7 +100,7 @@ export default function EventDetails() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div className='p-1 sm:p-3 md:p-5 flex flex-col gap-6'>
+                <div className='p-1 sm:p-3 md:p-5 flex flex-col gap-6 sm:gap-8'>
                     {/* Title and short details */}
                     <div className=' text-white bg-[url("https://picsum.photos/1200/400?random=1")] bg-cover rounded-2xl '>
                         <div className=' min-h-[85vh] bg-black/70 rounded-2xl flex flex-col justify-center items-center gap-7 sm:gap-9 '>
@@ -166,7 +166,7 @@ export default function EventDetails() {
                         </div>
                     </div>
 
-                    <div className='grid grid-cols-1 gap-7 '>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-7 sm:gap-8 '>
                         <div className='p-4 rounded-xl shadow-[0_0_20px_4px_rgba(0,0,0,0.2)]'>
                             <div className='mb-2 font-medium text-2xl text-center'>
                                 About the {' '}
@@ -174,9 +174,7 @@ export default function EventDetails() {
                                     {eventDetails?.type}
                                 </span>
                             </div>
-
                             <hr />
-
                             <div className='mt-5 text-justify'>
                                 {eventDetails?.description}
                             </div>
