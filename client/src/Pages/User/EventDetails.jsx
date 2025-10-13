@@ -7,13 +7,28 @@ export default function EventDetails() {
     const { id } = useParams()
     const [eventDetails, setEventDetails] = useState()
     const [registrations, setRegistrations] = useState([])
+    const [collageDetails, setCollageDetails] = useState()
 
     useEffect(() => {
         fetchEventDetails()
         fetchRegistrations()
     }, [])
 
-    console.log('registrations :>> ', registrations);
+    useEffect(() => {
+        if (eventDetails) {
+            fetchCollage()
+        }
+    }, [eventDetails])
+
+    useEffect(() => {
+        if (collageDetails) {
+            const shortName = collageDetails?.name.match(/[A-Z]/g).join('') || ''
+            setCollageDetails({
+                ...collageDetails,
+                shortName
+            })
+        }
+    }, [collageDetails])
 
     function fetchEventDetails() {
         axiosInstance({
@@ -22,6 +37,19 @@ export default function EventDetails() {
         })
             .then((res) => {
                 setEventDetails(res?.data?.data)
+            })
+            .catch((err) => {
+                console.log('err :>> ', err);
+            })
+    }
+
+    function fetchCollage() {
+        axiosInstance({
+            method: 'GET',
+            url: `/collage/${eventDetails?.collageId}`
+        })
+            .then((res) => {
+                setCollageDetails(res?.data?.data)
             })
             .catch((err) => {
                 console.log('err :>> ', err);
@@ -55,7 +83,6 @@ export default function EventDetails() {
         const year = date.getFullYear().toString()
 
         const result = [day, dayNum, month, year]
-        console.log(result)
         return result
     }
 
@@ -73,7 +100,7 @@ export default function EventDetails() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div className='p-1 sm:p-3 md:p-5 flex flex-col gap-5'>
+                <div className='p-1 sm:p-3 md:p-5 flex flex-col gap-6'>
                     {/* Title and short details */}
                     <div className=' text-white bg-[url("https://picsum.photos/1200/400?random=1")] bg-cover rounded-2xl '>
                         <div className=' min-h-[85vh] bg-black/70 rounded-2xl flex flex-col justify-center items-center gap-7 sm:gap-9 '>
@@ -88,7 +115,10 @@ export default function EventDetails() {
                             <div className='font-semibold text-lg sm:text-2xl flex flex-col sm:flex-row items-center gap-3'>
                                 <div className=' flex items-center gap-2 '>
                                     <Calendar />
-                                    {formatDate(eventDetails?.date)}
+                                    <span>{formatDate(eventDetails?.date)[0]},</span>
+                                    <span>{formatDate(eventDetails?.date)[2]}</span>
+                                    <span>{formatDate(eventDetails?.date)[1]},</span>
+                                    <span>{formatDate(eventDetails?.date)[3]}</span>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <Clock />
@@ -102,7 +132,7 @@ export default function EventDetails() {
                         </div>
                     </div>
 
-                    <div className='p-4 border rounded-xl shadow-lg flex flex-row justify-around'>
+                    <div className='p-4 rounded-xl shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] flex flex-row justify-around'>
                         <div className=' flex flex-col items-center'>
                             <Users className=' size-8 text-indigo-600' />
                             <span className=' font-bold text-2xl'>
@@ -133,6 +163,40 @@ export default function EventDetails() {
                             <span className='text-gray-500 text-center'>
                                 Registration Deadline
                             </span>
+                        </div>
+                    </div>
+
+                    <div className='grid grid-cols-1 gap-7 '>
+                        <div className='p-4 rounded-xl shadow-[0_0_20px_4px_rgba(0,0,0,0.2)]'>
+                            <div className='mb-2 font-medium text-2xl text-center'>
+                                About the {' '}
+                                <span className=' capitalize'>
+                                    {eventDetails?.type}
+                                </span>
+                            </div>
+
+                            <hr />
+
+                            <div className='mt-5 text-justify'>
+                                {eventDetails?.description}
+                            </div>
+                        </div>
+
+                        <div className='p-4 rounded-xl shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] '>
+                            <div className='mb-2 font-medium text-2xl text-center'>
+                                Hosted By
+                            </div>
+                            <hr />
+                            <div className='mt-5 flex items-center gap-4'>
+                                <div className='p-4 font-bold text-xl text-primary bg-gray-300/50 border rounded-full '>
+                                    {collageDetails?.shortName}
+                                </div>
+                                <div>
+                                    <div className=' font-medium text-lg'>
+                                        {collageDetails?.name}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

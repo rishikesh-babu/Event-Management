@@ -42,7 +42,30 @@ async function getCollages(req, res, next) {
     }
 }
 
+async function getCollage(req, res, next) {
+    try {
+        console.log('Router: Get Collage')
+
+        const { id } = req.params
+
+        if (!id) {
+            return res.status(400).json({ message: 'Collage Id is required' })
+        }
+
+        const collageExist = await supabase.from('collages').select('*').eq('id', id).single()
+
+        if (collageExist.error) {
+            return res.status(400).json({ message: 'Collage Fetched', data: collageExist.data })
+        }
+
+        return res.status(200).json({ message: 'Collage details fetched', data: collageExist.data })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
-    createCollage, 
-    getCollages
+    createCollage,
+    getCollages,
+    getCollage
 }
