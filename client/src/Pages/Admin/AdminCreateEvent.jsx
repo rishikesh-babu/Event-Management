@@ -93,7 +93,7 @@ export default function AdminCreateEvent() {
             collageId:event.collageId,
             seat: event.seat,
             registration_deadline: event.registration_deadline,
-            reg_fee: event.reg_fee,
+            fee: event.reg_fee,
             duration: `${event.duration} ${event.durationType}`,
         }
 
