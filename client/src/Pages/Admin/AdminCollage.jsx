@@ -24,7 +24,7 @@ export default function AdminCollage() {
     }
     return (
         <div className="m-2 py-4 px-1 sm:px-4 max-w-2xl mx-auto bg-gray-100 rounded-xl shadow-sm">
-            <h1 className="mb-6 text-3xl font-bold text-gray-800 text-center">Colleges</h1>
+            <h1 className="mb-6 font-bold text-3xl text-center">Colleges</h1>
 
             <div className="mb-6 flex flex-row items-center justify-between gap-3">
                 <input
@@ -48,7 +48,7 @@ export default function AdminCollage() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div className="">
+                <div>
                     <div className="p-3 font-semibold text-gray-700 text-lg bg-gray-300/60 rounded-t-lg grid grid-cols-[40px_1fr_160px] border-b border-gray-300">
                         <span>#</span>
                         <span>Name</span>
