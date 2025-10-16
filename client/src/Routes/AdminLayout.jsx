@@ -12,12 +12,12 @@ export default function AdminLayout() {
     }
 
     return (
-        <div className={`flex`}>
+        <div className={`flex h-[100dvh] overflow-y-hidden`}>
             {/* Sidebar */}
             <AdminSideBar openSideBar={openSideBar} toggleSideBar={toggleSideBar} />
 
             {/* Main Content */}
-            <main className={`z-20 min-h-[100dvh] flex-1 transition-all duration-500 `} >
+            <main className={`z-20 flex-1 transition-all duration-500 overflow-auto `} >
                 <AdminHeader toggleSideBar={toggleSideBar} />
                 <div>
                     <Outlet />

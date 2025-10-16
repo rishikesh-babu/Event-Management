@@ -35,7 +35,7 @@ export default function AdminSideBar({ openSideBar, toggleSideBar }) {
     ]
 
     return (
-        <div className={`${(screenSize < 600 || !openSideBar) && 'absolute'} top-0 left-0 p-4 h-[100dvh] bg-white border-r border flex flex-col gap-4 transition-all duration-500 shadow-md ${openSideBar ? 'w-60 z-30' : 'w-0 opacity-0 z-0 '}`} >
+        <div className={`${(screenSize < 600 || !openSideBar) && 'fixed'} top-0 left-0 p-4 h-[100dvh] bg-white border-r border flex flex-col gap-4 transition-all duration-500 shadow-md overflow-y-hidden ${openSideBar ? 'w-60 z-30' : 'w-0 opacity-0 z-0 '}`} >
             <div className='relative p-3 flex items-center gap-3 rounded-xl shadow-md'>
                 <div className='p-2 bg-gray-300 rounded-full'>
                     <User size={25} />
