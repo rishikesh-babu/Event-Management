@@ -69,25 +69,25 @@ export default function Home() {
             <div className="max-w-6xl mx-auto h-px bg-gray-300 my-10"></div>
 
             {/* 3. Key Features/Benefits */}
-            <section className="features-section py-12 px-4 sm:px-6 lg:px-8 bg-white">
-                <div className="max-w-6xl mx-auto">
+            <section className="py-12 px-4 sm:px-6 lg:px-8 ">
+                <div className="mx-auto max-w-6xl min-h-[70vh]">
                     <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">What Our System Automates</h2>
 
                     <div className="feature-cards-grid grid md:grid-cols-3 gap-8">
 
-                        <div className="feature-card p-6 border rounded-lg text-center hover:shadow-xl transition duration-300">
+                        <div className="feature-card p-6 border rounded-lg text-center shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] sm:shadow-xl sm:hover:shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] sm:hover:scale-105 cursor-pointer transition duration-300">
                             <span className="icon text-4xl mb-4 inline-block text-blue-500">⏱️</span>
                             <h4 className="text-xl font-semibold text-gray-800 mb-2">Real-Time Capacity Control</h4>
                             <p className="text-gray-600">Registrations are automatically closed when the event's designated seat limit is reached, eliminating manual intervention and over-registration.</p>
                         </div>
 
-                        <div className="feature-card p-6 border rounded-lg text-center hover:shadow-xl transition duration-300">
+                        <div className="feature-card p-6 border rounded-lg text-center shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] sm:shadow-xl sm:hover:shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] sm:hover:scale-105 cursor-pointer transition duration-300">
                             <span className="icon text-4xl mb-4 inline-block text-blue-500">✅</span>
                             <h4 className="text-xl font-semibold text-gray-800 mb-2">Digital Attendance Tracking</h4>
                             <p className="text-gray-600">Registered participants can log in via the platform to securely mark their attendance, streamlining the check-in process and providing accurate records.</p>
                         </div>
 
-                        <div className="feature-card p-6 border rounded-lg text-center hover:shadow-xl transition duration-300">
+                        <div className="feature-card p-6 border rounded-lg text-center  shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] sm:shadow-xl sm:hover:shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] sm:hover:scale-105 cursor-pointer transition duration-300">
                             <span className="icon text-4xl mb-4 inline-block text-blue-500">🏆</span>
                             <h4 className="text-xl font-semibold text-gray-800 mb-2">Auto-Generated Certificates</h4>
                             <p className="text-gray-600">The system automatically processes and issues personalized, digital certificates to all participants who successfully check in for the event.</p>
@@ -99,7 +99,7 @@ export default function Home() {
 
             {/* 4. Team Section */}
             <section className="team-section py-12 px-4 sm:px-6 lg:px-8 bg-gray-100">
-                <div className="max-w-4xl mx-auto text-center">
+                <div className="mx-auto max-w-4xl min-h-[50vh] flex flex-col justify-around items-center ">
                     <h2 className="text-3xl font-bold text-gray-800 mb-8">Meet the Project Team</h2>
                     <div className="team-list flex flex-wrap justify-center gap-4">
                         {/* Map through the teamMembers prop (or a hardcoded array) */}
