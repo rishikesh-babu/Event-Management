@@ -118,7 +118,7 @@ export default function AdminCreateEvent() {
 
                 <div className='text-center mb-8'>
                     <h1 className='text-3xl font-bold text-gray-800 mb-2'>Create New Event</h1>
-                    <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full"></div>
+                    <div className="w-24 h-1 bg-gray-500 mx-auto rounded-full"></div>
                 </div>
 
                 <form onSubmit={handleSubmit} className='space-y-6'>
