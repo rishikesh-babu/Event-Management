@@ -42,12 +42,12 @@ export default function AdminSideBar({ openSideBar, toggleSideBar }) {
                 </div>
 
                 <div>
-                    <h2 className='text-lg font-semibold'>Admin {screenSize} </h2>
+                    <h2 className='text-lg font-semibold'>Admin </h2>
                     <p className='text-xs text-gray-300'>Administrator Panel</p>
                 </div>
 
                 {screenSize < 600 && (
-                    <div onClick={toggleSideBar} className='absolute right-[-16px] p-1 bg-gray-200 rounded-full'>
+                    <div onClick={toggleSideBar} className='absolute right-[-16px] p-1 bg-gray-200 rounded-full cursor-pointer hover:scale-105 transition-all duration-300'>
                         <ChevronLeft size={25} />
                     </div>
                 )}

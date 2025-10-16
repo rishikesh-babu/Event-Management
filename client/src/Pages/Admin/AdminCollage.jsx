@@ -56,7 +56,7 @@ export default function AdminCollage() {
                     </div>
 
                     {collages.map((item, index) => (
-                        <div key={item?.id} className={`p-3 grid grid-cols-[40px_1fr_160px] items-center text-gray-800 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition-all border-b last:border-b-0`}>
+                        <div key={item?.id} className={`p-3 grid grid-cols-[40px_1fr_160px] items-center ${index % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition-all border-b last:border-b-0`}>
                             <div>{index + 1}</div>
 
                             <div className="font-medium">{item?.name}</div>

@@ -163,10 +163,12 @@ export default function AdminEvent() {
 
             <div>
                 {event.length === 0 ? (
-                    <div></div>
+                    <div className="flex justify-center items-center h-48">
+                    <span className="loading loading-spinner text-primary w-10 h-10" />
+                </div>
                 ) : (
-                    <div>
-                        <div className="p-3 font-semibold text-gray-700 text-lg bg-gray-300/60 rounded-t-lg grid grid-cols-[40px_1fr_1fr_160px] border-b border-gray-300">
+                    <div className='w-full overflow-auto'>
+                        <div className="p-3 min-w-[400px] font-semibold text-gray-700 text-lg bg-gray-300/60 rounded-t-lg grid grid-cols-[40px_1fr_1fr_160px] border-b border-gray-300">
                             <span>#</span>
                             <span>Name</span>
                             <span>Type</span>
@@ -174,28 +176,28 @@ export default function AdminEvent() {
                         </div>
 
                         {event?.map((item, index) => (
-                            <div key={item?.id} className={`p-3 grid grid-cols-[40px_1fr_1fr_160px] items-center text-gray-800 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition-all border-b last:border-b-0`}>
-                                <div>
+                            <div key={item?.id} className={`p-3 min-w-[400px] grid grid-cols-[40px_1fr_1fr_160px] items-center gap-2 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition-all border-b last:border-b-0`}>
+                                <div className=''>
                                     {index + 1}
                                 </div>
 
-                                <div>
+                                <div className='font-medium text-nowrap'>
                                     {item?.title}
                                 </div>
 
-                                <div className='capitalize'>
+                                <div className='capitalize font-semibold text-gray-500'>
                                     {item?.type}
                                 </div>
 
                                 <div className="flex justify-center space-x-3">
-                                    <button
-                                        onClick={() => handleEdit(item)}
+                                    <Link
+                                        to={`/admin/event/${item?.id}`}
                                         className="px-3 py-1 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600 transition-all"
                                     >
                                         View
-                                    </button>
+                                    </Link>
                                     <button
-                                        onClick={() => handleDelete(item.id)}
+                                        // onClick={() => handleDelete(item.id)}
                                         className="px-3 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600 transition-all"
                                     >
                                         Delete

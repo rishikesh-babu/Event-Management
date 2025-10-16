@@ -74,7 +74,7 @@ const router = createBrowserRouter([
                         element: <AdminEvent />
                     }, 
                     {
-                        path: 'event/:eventId',
+                        path: 'event/:id',
                         element: <AdminEventDetails />
                     }, 
                     {
