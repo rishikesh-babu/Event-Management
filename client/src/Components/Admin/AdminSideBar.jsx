@@ -42,7 +42,7 @@ export default function AdminSideBar({ openSideBar, toggleSideBar }) {
                 </div>
 
                 <div>
-                    <h2 className='text-lg font-semibold'>Admin </h2>
+                    <h2 className='text-lg font-semibold'>Admin {screenSize} </h2>
                     <p className='text-xs text-gray-300'>Administrator Panel</p>
                 </div>
 
