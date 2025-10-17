@@ -14,7 +14,7 @@ export default function AdminCreateEvent() {
         seat: "",
         registration_deadline: "",
         reg_fee: "",
-        duration: "", type: "",
+        duration: "", durationType: "",
     })
     const [errors, setErrors] = useState({});
 
@@ -90,26 +90,38 @@ export default function AdminCreateEvent() {
             type: event.type,
             date: event.date,
             time: event.time,
-            collageId:event.collageId,
+            collageId: event.collageId,
             seat: event.seat,
             registration_deadline: event.registration_deadline,
             fee: event.reg_fee,
             duration: `${event.duration} ${event.durationType}`,
         }
 
+        axiosInstance({
+            method: 'POST',
+            url: '/event',
+            data: payload
+        })
+            .then((res) => {
+                console.log('res :>> ', res);
+            })
+            .catch((err) => {
+                console.log('err :>> ', err);
+
+            })
 
         setEvent({
-        title: "",
-        description: "",
-        type: "",
-        date: "",
-        time: "",
-        collageId: "",
-        seat: "",
-        registration_deadline: "",
-        reg_fee: "",
-        duration: "", type: "",
-    })
+            title: "",
+            description: "",
+            type: "",
+            date: "",
+            time: "",
+            collageId: "",
+            seat: "",
+            registration_deadline: "",
+            reg_fee: "",
+            duration: "", durationType: "",
+        })
     }
 
     return (
@@ -273,8 +285,8 @@ export default function AdminCreateEvent() {
                                     <option value="days">Days</option>
                                     <option value="months">Months</option>
                                 </select>
-                                {errors.type && (
-                                    <p className="text-sm text-red-600 mt-1">{errors.type}</p>
+                                {errors.durationType && (
+                                    <p className="text-sm text-red-600 mt-1">{errors.durationType}</p>
                                 )}
                             </div>
                         </div>
