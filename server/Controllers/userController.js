@@ -91,8 +91,31 @@ async function userLogout(req, res, next) {
     }
 }
 
+async function userProfile(req, res, next) {
+    try {
+        console.log('Router: Profile')
+
+        const { id } = req.user
+
+        if (!id) {
+            return res.status(400).json({ message: 'User Id is required' })
+        }
+
+        const userExist = await supabase.from('users').select('*').eq('id', id).single()
+
+        if (userExist.error) {
+            return res.status(400).json({ message: 'Error in fetching user details', data: userExist.error })
+        }
+
+        return res.status(200).json({ message: 'User details fetched successfully', data: userExist.data })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
     userSignup,
     userLogin, 
-    userLogout
+    userLogout, 
+    userProfile
 }

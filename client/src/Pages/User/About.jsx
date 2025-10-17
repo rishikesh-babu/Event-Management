@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function About() {
   // Define variables for placeholders to make them easy to update
-  const companyName = "EventFlow"; 
+  const companyName = "PlanIt"; 
   const founderName = "The Dev Team";
   const foundedYear = "2023";
-  const eventCount = "100+";
+  const eventCount = "20+";
 
   return (
     // Outer container for padding and background
@@ -14,8 +14,8 @@ export default function About() {
       <div className="about-us-container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* 1. Hero Section: Introduction */}
-        <header className="about-hero bg-blue-700 text-white p-10 rounded-xl shadow-lg mb-12 text-center">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-3">Welcome to {companyName}</h1>
+        <header className="p-10 mb-12 text-center text-white bg-blue-700 rounded-xl shadow-lg">
+          <h1 className="mb-3 font-extrabold text-4xl sm:text-5xl">Welcome to {companyName}</h1>
           <p className="tagline text-xl font-light opacity-90">Crafting unforgettable moments, one event at a time.</p>
         </header>
         
