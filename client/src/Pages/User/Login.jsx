@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { loginUser } from '../../api/api'
 import { saveUserData } from '../../store/slice/userSlice'
 import { useDispatch } from 'react-redux';
 import axiosInstance from '../../Config/axiosInstance';
@@ -47,6 +46,7 @@ export default function Login() {
         })
             .then((res) => {
                 const result = res.data;
+                console.log(res)
                 if (result.success) {
                     dispatch(saveUserData({
                         id: result.data.id,

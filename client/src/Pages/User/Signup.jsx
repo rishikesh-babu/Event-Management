@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { signupUser } from '../../api/api'
+import { useDispatch } from 'react-redux'
+import axiosInstance from '../../Config/axiosInstance'
+import { saveUserData } from '../../store/slice/userSlice'
 export default function Signup() {
 
     const navigate = useNavigate()
@@ -19,6 +21,7 @@ export default function Signup() {
 
     const [formErrors, setFormErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const dispatch = useDispatch()
 
     const [passwordValidation, setPasswordValidation] = useState({
         hasUpperCase: false,
@@ -135,7 +138,7 @@ export default function Signup() {
             }`
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
 
         if (!validateForm()) {
@@ -145,25 +148,40 @@ export default function Signup() {
         const fullName = formData.middle_name
             ? `${formData.first_name} ${formData.middle_name} ${formData.last_name}`
             : `${formData.first_name} ${formData.last_name}`;
-        const { first_name, middle_name, last_name, confirmPassword,phone_number, ...rest } = formData;
+        const { first_name, middle_name, last_name, confirmPassword, phone_number, ...rest } = formData;
         const payload = {
             ...rest,
             name: fullName,
-            phone:phone_number
+            phone: phone_number
         };
-        try {
-            const result = await signupUser(payload)
-            if (result.error) {
-                console.log(result.error)
-            } else {
-                
-                setTimeout(() => navigate("/login"), 1000)
-            }
-        } catch (err) {
-            console.log(err)
-        } finally {
-            setIsSubmitting(false)
-        }
+
+        axiosInstance({
+            method: 'POST',
+            url: '/user/signup',
+            data: payload
+        })
+            .then((res) => {
+                console.log(res)
+                const result = res.data;
+                if (res.status === 201 ) {
+                    dispatch(saveUserData({
+                        id: result.data.id,
+                        name: result.data.name,
+                        isAdmin: result.data.role === 'admin'
+                    }));
+                    setTimeout(() => navigate('/'), 500);
+                } else {
+                    setFormErrors({ general: result.message || "Signup failed" });
+                }
+            })
+            .catch((err) => {
+                console.error('Signup error:', err);
+                setFormErrors({ general: err.message || "Something went wrong" });
+            })
+            .finally(() => {
+                setIsSubmitting(false);
+            });
+
     }
     return (
         <div className="max-w-2xl mx-auto  mt-24 bg-white rounded-xl shadow-2xl p-8">
