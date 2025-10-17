@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../../api/api'
 import { saveUserData } from '../../store/slice/userSlice'
 import { useDispatch } from 'react-redux';
+import axiosInstance from '../../Config/axiosInstance';
 
 export default function Login() {
     const navigate = useNavigate()
@@ -33,30 +34,39 @@ export default function Login() {
         return Object.keys(errors).length === 0
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!validateForm()) return;
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        if (!validateForm()) return
+        setIsSubmitting(true);
 
-        setIsSubmitting(true)
-        try {
-            const result = await loginUser(credentials)
-            if (result.success) {
-                dispatch(saveUserData({
-                    id: result.data.id,
-                    name: result.data.name,
-                    isAdmin: result.data.role === 'admin' ? true : false
-                }))
-                setTimeout(() => navigate('/'), 500)
-            } else {
-                setFormErrors({ general: result.message || "Login failed" })
-            }
-        } catch (err) {
-            setFormErrors({ general: err.message || "Something went wrong" })
-        } finally {
-            setIsSubmitting(false)
-        }
-    }
+        axiosInstance({
+            method: 'POST',
+            url: '/user/login',
+            data: credentials
+        })
+            .then((res) => {
+                const result = res.data;
+                if (result.success) {
+                    dispatch(saveUserData({
+                        id: result.data.id,
+                        name: result.data.name,
+                        isAdmin: result.data.role === 'admin'
+                    }));
+                    setTimeout(() => navigate('/'), 500);
+                } else {
+                    setFormErrors({ general: result.message || "Login failed" });
+                }
+            })
+            .catch((err) => {
+                console.error('Login error:', err);
+                setFormErrors({ general: err.message || "Something went wrong" });
+            })
+            .finally(() => {
+                setIsSubmitting(false);
+            });
+    };
+
 
     const getClassName = (fieldName) => {
         return `w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none ${formErrors[fieldName] ? 'border-red-500' : 'border-gray-300'
