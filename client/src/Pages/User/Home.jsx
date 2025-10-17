@@ -12,7 +12,7 @@ export default function Home() {
         <div>
             {/* 1. Hero Section: Value Proposition & Call to Action */}
             <section className=" px-4 sm:px-6 lg:px-8 min-h-[70vh] bg-zinc-100 flex flex-col justify-center">
-                <div className="max-w-6xl mx-auto flex flex-col justify-between gap-8">
+                <div className="max-w-6xl mx-auto mb-5 flex flex-col justify-between gap-8">
                     <Reveal className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
                         Seamless Events, Smart Administration.
                     </Reveal>
@@ -24,13 +24,13 @@ export default function Home() {
                     <UpReveal className=" flex justify-center md:justify-start space-x-4">
                         <button
                             onClick={() => window.location.href = '/event'}
-                            className="py-1 px-3 sm:py-3 sm:px-8 bg-yellow-400 text-blue-900 hover:bg-yellow-300 font-bold rounded-lg transition duration-300 transform hover:scale-105 shadow-md"
+                            className="py-1 px-3 sm:py-3 sm:px-8 font-bold text-lg text-blue-900 bg-yellow-400 hover:bg-yellow-300 rounded-lg transition duration-300 transform hover:scale-105 shadow-md"
                         >
                             View Upcoming Events
                         </button>
                         <button
                             onClick={() => window.location.href = '/login'}
-                            className="py-1 px-3 sm:py-3 sm:px-8 font-semibold hover:text-blue-700 bg-pink-600 border rounded-lg transition duration-300"
+                            className="py-2 px-4 sm:py-3 sm:px-8 font-semibold text-lg hover:text-blue-700 bg-pink-600 border rounded-lg transition duration-300"
                         >
                             Login
                         </button>
