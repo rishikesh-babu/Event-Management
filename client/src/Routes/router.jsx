@@ -16,6 +16,7 @@ import About from "../Pages/User/About";
 import AdminCollage from "../Pages/Admin/AdminCollage";
 import AdminUser from "../Pages/Admin/AdminUser";
 import Profile from "../Pages/User/Profile";
+import Contact from "../Pages/User/Contact";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: 'profile', 
                 element: <Profile />
+            },
+            {
+                path: 'contact', 
+                element: <Contact />
             }
         ]
     }, 
