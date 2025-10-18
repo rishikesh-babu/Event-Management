@@ -28,7 +28,7 @@ export default function Navbar() {
                 </div>
 
                 {navContent.map((item, index) => (
-                    <Link key={index} to={item.link} className='p-2 hover:bg-gray-400 rounded-full transition-all duration-300 select-none' >
+                    <Link key={index} to={item.link} className='p-2 sm:hover:bg-gray-400 rounded-full transition-all duration-300 select-none' >
                         {item.icon}
                     </Link>
                 ))}
