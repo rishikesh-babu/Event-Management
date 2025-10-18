@@ -17,6 +17,7 @@ import AdminCollage from "../Pages/Admin/AdminCollage";
 import AdminUser from "../Pages/Admin/AdminUser";
 import Profile from "../Pages/User/Profile";
 import Contact from "../Pages/User/Contact";
+import MyEvent from "../Pages/User/MyEvent";
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: 'contact', 
                 element: <Contact />
+            }, 
+            {
+                path: 'myevent', 
+                element: <MyEvent />
             }
         ]
     }, 
