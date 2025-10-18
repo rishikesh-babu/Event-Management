@@ -24,13 +24,13 @@ export default function Home() {
                     <UpReveal className=" flex justify-center md:justify-start space-x-4">
                         <button
                             onClick={() => window.location.href = '/event'}
-                            className="py-1 px-3 sm:py-3 sm:px-8 font-bold text-lg text-blue-900 bg-yellow-400 hover:bg-yellow-300 rounded-lg transition duration-300 transform hover:scale-105 shadow-md"
+                            className="py-1 px-3 sm:py-3 sm:px-8 font-bold text-lg text-blue-900 bg-blue-400 hover:bg-yellow-300 rounded-lg transition duration-300 transform hover:scale-105 shadow-md"
                         >
                             View Upcoming Events
                         </button>
                         <button
                             onClick={() => window.location.href = '/login'}
-                            className="py-2 px-4 sm:py-3 sm:px-8 font-semibold text-lg hover:text-blue-700 bg-pink-600 border rounded-lg transition duration-300"
+                            className="py-2 px-4 sm:py-3 sm:px-8 font-semibold text-lg hover:text-blue-700 bg-green-600 gradient border rounded-lg transition duration-300"
                         >
                             Login
                         </button>
