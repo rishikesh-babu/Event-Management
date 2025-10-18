@@ -21,7 +21,7 @@ export default function Navbar() {
     
     return (
         <div className='py-4'>
-            <div className='px-4 py-2 border-2 rounded-full flex justify-between items-center'>
+            <div className='px-4 py-2 bg-gray-100 border-2 rounded-full flex justify-between items-center'>
                 <div className='size-10 border rounded-full'>
                     <img src="/logo.jpg" alt="PlanIt" />
                 </div>
