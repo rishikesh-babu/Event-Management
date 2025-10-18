@@ -14,8 +14,8 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-[#121826] flex flex-col items-center justify-center text-gray-300 p-6">
-      <h1 className="text-2xl font-semibold mb-6">Contact Us</h1>
+    <div className="min-h-screen bg-[#121826] rounded-t-3xl flex flex-col items-center justify-center text-gray-300 p-6">
+      <h1 className="text-3xl font-semibold mb-6">Contact Us</h1>
 
       <form
         onSubmit={handleSubmit}
