@@ -30,7 +30,7 @@ export default function Home() {
                         </button>
                         <button
                             onClick={() => window.location.href = '/login'}
-                            className="py-2 px-4 sm:py-3 sm:px-8 font-semibold text-lg hover:text-blue-700 bg-pink-600 border rounded-lg transition duration-300"
+                            className="py-2 px-4 sm:py-3 sm:px-8 font-bold text-lg text-blue-900 hover:text-blue-700 bg-pink-600 border rounded-lg transition duration-300"
                         >
                             Login
                         </button>

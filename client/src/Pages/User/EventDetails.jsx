@@ -12,7 +12,7 @@ export default function EventDetails() {
     useEffect(() => {
         fetchEventDetails()
         fetchRegistrations()
-    }, [])
+    }, [id])
 
     useEffect(() => {
         if (eventDetails) {
