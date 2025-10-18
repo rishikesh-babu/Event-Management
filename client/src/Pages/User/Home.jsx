@@ -5,6 +5,7 @@ export default function Home() {
     useEffect(() => {
         window.scroll(0, 0)
     }, [])
+    
     const systemName = 'EventManager';
     const teamMembers = ['Rishekesh Babu', 'Savio Shaju', 'Sulfa Saji', 'Renet Mammen Reji'];
 

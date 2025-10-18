@@ -8,7 +8,12 @@ export default function Event() {
 
     useEffect(() => {
         fetchEvents()
+        scrollToTop()
     }, [])
+
+    function scrollToTop() {
+        window.scroll(0, 0)
+    }
 
     function fetchEvents() {
         axiosInstance({
