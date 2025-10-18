@@ -23,7 +23,7 @@ export default function Footer() {
       {/* Logo (optional placeholder) */}
       <div className="flex justify-center mb-3">
         <img
-          src=" /logo-placeholder.png"
+          src=" /logo.png"
         
           className="w-12 h-12"
         />

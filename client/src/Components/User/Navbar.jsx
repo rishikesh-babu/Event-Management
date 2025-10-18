@@ -24,7 +24,7 @@ export default function Navbar() {
         <div className='z-40 fixed top-0 right-0 left-0 py-4'>
             <div className='px-4 py-2 sm:py-4 max-w-5xl mx-auto backdrop-blur-[20px] border-2 rounded-full flex justify-between items-center'>
                 <div className='size-10 border rounded-full'>
-                    <img src="/logo.jpg" alt="PlanIt" />
+                    <img src="\logo.png" alt="PlanIt-Logo" />
                 </div>
 
                 {navContent.map((item, index) => (
