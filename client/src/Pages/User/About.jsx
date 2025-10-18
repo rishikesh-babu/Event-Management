@@ -77,7 +77,7 @@ export default function About() {
           <div className="team-member-list flex justify-center flex-wrap gap-6">
             
             <div className="team-member-card w-full sm:w-64 bg-white p-6 rounded-xl shadow-lg text-center border-b-4 border-blue-400">
-              <div className="h-20 w-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-gray-500 font-bold"><img className='rounded-full' src="\Rishikesh-Babu.jpg" alt="" /></div>
+              <div className="h-20 w-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-gray-500 font-bold"><img className='rounded-full' src="\Rishikesh-Babu.jpg" alt="Rishikesh-Babu" /></div>
               <h4 className="text-xl font-semibold text-gray-800">[Rishikesh Babu]</h4>
               <p className="role text-blue-600 font-medium">Backend Developer</p>
             </div>
@@ -95,7 +95,7 @@ export default function About() {
             </div>
 
             <div className="team-member-card w-full sm:w-64 bg-white p-6 rounded-xl shadow-lg text-center border-b-4 border-blue-400">
-              <div className="h-20 w-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-gray-500 font-bold"><img className='rounded-full' src="\Renet-Reji.jpg" alt="" /></div>
+              <div className="h-20 w-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-gray-500 font-bold"><img className='rounded-full' src="\Renet-Reji.jpg" alt="Renet-Reji" /></div>
               <h4 className="text-xl font-semibold text-gray-800">[Renet Mammen Reji]</h4>
               <p className="role text-blue-600 font-medium">UI/UX Designer</p>
             </div>
