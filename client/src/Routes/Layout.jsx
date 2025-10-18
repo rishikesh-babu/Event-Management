@@ -10,7 +10,7 @@ export default function Layout() {
     return (
         <>
             <Navbar />
-            <main className='min-h-[80dvh]'>
+            <main className='mt-[6rem] min-h-[80dvh]'>
                 <Outlet />
             </main>
             <Footer />
