@@ -22,13 +22,13 @@ export default function Navbar() {
 
     return (
         <div className='z-40 fixed top-0 right-0 left-0 py-4'>
-            <div className='px-4 py-2 sm:py-4 max-w-6xl mx-auto  backdrop-blur-[20px] border-2 rounded-full flex justify-between items-center'>
+            <div className='px-4 py-2 sm:py-4 max-w-5xl mx-auto backdrop-blur-[20px] border-2 rounded-full flex justify-between items-center'>
                 <div className='size-10 border rounded-full'>
                     <img src="/logo.jpg" alt="PlanIt" />
                 </div>
 
                 {navContent.map((item, index) => (
-                    <Link to={item.link} >
+                    <Link key={index} to={item.link} className='p-2 hover:bg-gray-400 rounded-full transition-all duration-300' >
                         {item.icon}
                     </Link>
                 ))}
