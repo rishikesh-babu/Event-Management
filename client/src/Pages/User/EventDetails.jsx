@@ -20,15 +20,15 @@ export default function EventDetails() {
         }
     }, [eventDetails])
 
-    useEffect(() => {
-        if (collageDetails) {
-            const shortName = collageDetails?.name.match(/[A-Z]/g).join('') || ''
-            setCollageDetails({
-                ...collageDetails,
-                shortName
-            })
-        }
-    }, [collageDetails])
+    // useEffect(() => {
+    //     if (collageDetails) {
+    //         const shortName = collageDetails?.name.match(/[A-Z]/g).join('') || ''
+    //         setCollageDetails({
+    //             ...collageDetails,
+    //             shortName
+    //         })
+    //     }
+    // }, [collageDetails])
 
     function fetchEventDetails() {
         axiosInstance({
@@ -187,12 +187,10 @@ export default function EventDetails() {
                             <hr />
                             <div className='mt-5 flex items-center gap-4'>
                                 <div className='p-4 font-bold text-xl text-primary bg-gray-300/50 border rounded-full '>
-                                    {collageDetails?.shortName}
+                                    {collageDetails?.name ? collageDetails.name.match(/[A-Z]/g)?.join('') || '' : ''}
                                 </div>
-                                <div>
-                                    <div className=' font-medium text-lg'>
-                                        {collageDetails?.name}
-                                    </div>
+                                <div className=' font-medium text-lg'>
+                                    {collageDetails?.name}
                                 </div>
                             </div>
                         </div>
