@@ -9,12 +9,10 @@ export default function Layout() {
 
     return (
         <>
-            <div className='mb-[5rem] '>
-                <Navbar />
-            </div>
-            <div className='min-h-[80dvh]'>
+            <Navbar />
+            <main className='min-h-[80dvh]'>
                 <Outlet />
-            </div>
+            </main>
             <Footer />
         </>
     )
