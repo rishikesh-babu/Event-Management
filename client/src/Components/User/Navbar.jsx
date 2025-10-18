@@ -29,22 +29,38 @@ export default function Navbar() {
     }
 
     return (
-        <div className='z-40 fixed top-0 right-0 left-0 py-4'>
-            <div className='px-4 py-2 sm:py-4 max-w-5xl mx-auto backdrop-blur-[20px] border-2 rounded-full flex justify-between items-center'>
-                <div onClick={scrollToTop} className='size-10 border rounded-full cursor-pointer'>
-                    <img src="\logo.png" alt="PlanIt-Logo" />
+        <div className='fixed top-0 left-0 right-0 z-50 py-3 sm:py-4'>
+            <div className='max-w-6xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex justify-between items-center backdrop-blur-md bg-white/50 border border-gray-200 rounded-full shadow-md transition-all duration-300'>
+                <div
+                    onClick={scrollToTop}
+                    className='w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full cursor-pointer hover:scale-105 transition-transform duration-300 bg-gray-100 shadow-sm'
+                >
+                    <img src="\logo.png" alt="PlanIt-Logo" className='w-8 h-8 sm:w-10 sm:h-10 object-contain rounded-full' />
                 </div>
 
-                {navContent.map((item, index) => (
-                    <Link key={index} to={item.link} className='p-2 sm:hover:bg-gray-400 rounded-full transition-all duration-300 select-none' >
-                        {item.icon}
-                    </Link>
-                ))}
+                {/* Navigation Icons */}
+                <div className='flex gap-2 sm:gap-4'>
+                    {navContent.map((item, index) => (
+                        <Link
+                            key={index}
+                            to={item.link}
+                            className='w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 shadow-sm'
+                        >
+                            {item.icon}
+                        </Link>
+                    ))}
+                </div>
 
-                <Link to={'/login'} className='px-3 py-1 font-semibold text-gray-500 sm:hover:text-white border-2 border-gray-300 hover:bg-info hover:border-accent rounded-full transition-all duration-300'>
+                {/* Login Button */}
+                <Link
+                    to={'/login'}
+                    className='px-3 sm:px-4 py-1 sm:py-2 font-semibold rounded-full bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 shadow-sm text-sm sm:text-base'
+                >
                     Login
                 </Link>
+
             </div>
         </div>
+
     )
 }
