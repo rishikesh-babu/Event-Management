@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar() {
 
-    const navContentStyle = 'text-gray-600 hover:text-white hover:scale-105 transition-all duration-300'
+    const navContentStyle = 'text-gray-600 sm:hover:text-white hover:scale-105 transition-all duration-300'
     const navContent = [
         {
             link: '/',
