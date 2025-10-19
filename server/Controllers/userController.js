@@ -113,9 +113,43 @@ async function userProfile(req, res, next) {
     }
 }
 
+async function getUserForRegisteredEvents(req, res, next) {
+    try {
+        const { eventId } = req.params
+
+        if (!eventId) {
+            return res.status(400).json({ message: 'Event Id is required' })
+        }
+
+        const registrationsExist = await supabase.from('registrations').select('userId').eq('eventId', eventId)
+        
+        if (registrationsExist.error) {
+            return res.status(400).json({ message: 'Error in fetching registrations' })
+        }
+
+        if (registrationsExist.data.length == 0) {
+            return res.status(200).json({ message: 'No one registered for the event ', data: registrationsExist.length })
+        }
+
+        const userIds = registrationsExist.data.map(item => item.userId)
+
+        const usersExist = await supabase.from('users').select('*').in('id', userIds)
+
+        if (usersExist.error) {
+            return res.status(400).json({ message: 'Error in fetching users', data: usersExist.data })
+        }
+
+        return res.status(200).json({ message: 'Successfully fetch users ', data: usersExist.data })
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
     userSignup,
     userLogin, 
     userLogout, 
-    userProfile
+    userProfile, 
+    getUserForRegisteredEvents,
 }

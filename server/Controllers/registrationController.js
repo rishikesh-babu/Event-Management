@@ -4,7 +4,7 @@ async function registerEvent(req, res, next) {
     try {
         console.log('Router: Register')
 
-        const { id: eventId } = req.params
+        const { eventId } = req.params
         const { id: userId } = req.user
 
         if (!eventId) {
@@ -54,7 +54,7 @@ async function updateRegistration(req, res, next) {
     try {
         console.log('Router: Update')
 
-        const { id: eventId } = req.params
+        const { eventId } = req.params
         const { id: userId } = req.user
         const { status } = req.body
 
@@ -103,17 +103,17 @@ async function deleteRegistration(req, res, next) {
     }
 }
 
-async function getRegistrations(req, res, next) {
+async function getUserRegisteredEvents(req, res, next) {
     try {
         console.log('Router: Get Registrations')
 
-        const { id } = req.params
+        const { id: userId } = req.user
 
-        if (!id) {
-            return res.status(400).json({ message: 'Event id is required' })
+        if (!userId) {
+            return res.status(400).json({ message: 'User Id is required' })
         }
 
-        const registrations = await supabase.from('registrations').select('*').eq('eventId', id)
+        const registrations = await supabase.from('registrations').select('*').eq('userId', userId)
 
         if (registrations.error) {
             return res.status(400).json({ message: 'Error in fetching details', data: registrations.error })
@@ -129,5 +129,5 @@ module.exports = {
     registerEvent,
     updateRegistration,
     deleteRegistration, 
-    getRegistrations
+    getUserRegisteredEvents,
 }
