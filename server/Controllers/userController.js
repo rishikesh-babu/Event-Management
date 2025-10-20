@@ -60,7 +60,7 @@ async function userLogin(req, res, next) {
         const userResponse = await supabase.from('users').select('*').eq('email', email).single()
 
         if (userResponse.error) {
-            return res.status(400).json({ sucess:false, message: 'Email Doesnot exist' })
+            return res.status(400).json({ sucess: false, message: 'Email Doesnot exist' })
         }
 
         const userData = userResponse.data
@@ -74,7 +74,7 @@ async function userLogin(req, res, next) {
         const token = generateToken(userResponse.data)
         setCookies(res, token)
 
-        return res.status(200).json({success:true, message: 'Login successfully ✅', data: userResponse.data })
+        return res.status(200).json({ success: true, message: 'Login successfully ✅', data: userResponse.data })
     } catch (err) {
         next(err)
     }
@@ -84,10 +84,10 @@ async function userLogout(req, res, next) {
     try {
         console.log('Router: Logout')
 
-        clearCookies(res) 
+        clearCookies(res)
         return res.status(200).json({ message: 'Logout Successfully' })
     } catch (err) {
-        next()
+        next(err)
     }
 }
 
@@ -122,7 +122,7 @@ async function getUserForRegisteredEvents(req, res, next) {
         }
 
         const registrationsExist = await supabase.from('registrations').select('userId').eq('eventId', eventId)
-        
+
         if (registrationsExist.error) {
             return res.status(400).json({ message: 'Error in fetching registrations' })
         }
@@ -140,7 +140,27 @@ async function getUserForRegisteredEvents(req, res, next) {
         }
 
         return res.status(200).json({ message: 'Successfully fetch users ', data: usersExist.data })
-        
+
+    } catch (err) {
+        next(err)
+    }
+}
+
+async function checkUser(req, res, next) {
+    try {
+        const id = req.user.id
+
+        if (!id) {
+            return res.status(400).json({ message: 'User Id is not defined' })
+        }
+
+        const userExist = await supabase.from('users').select('*').eq('id', id).single()
+
+        if (userExist.error) {
+            return res.status(400).json({ message: 'Error in fetching user data', data: userExist.error })
+        }
+
+        return res.status(200).json({ message: 'Authorized user', data: userExist.data })
     } catch (err) {
         next(err)
     }
@@ -148,8 +168,9 @@ async function getUserForRegisteredEvents(req, res, next) {
 
 module.exports = {
     userSignup,
-    userLogin, 
-    userLogout, 
-    userProfile, 
+    userLogin,
+    userLogout,
+    userProfile,
     getUserForRegisteredEvents,
+    checkUser,
 }

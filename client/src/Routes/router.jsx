@@ -18,15 +18,16 @@ import AdminUser from "../Pages/Admin/AdminUser";
 import Profile from "../Pages/User/Profile";
 import Contact from "../Pages/User/Contact";
 import MyEvent from "../Pages/User/MyEvent";
+import UserProtectLayout from "./UserProtectLayout";
 
 const router = createBrowserRouter([
     {
-        path: '/', 
-        element: <Layout />, 
+        path: '/',
+        element: <Layout />,
         errorElement: <Errorpage />,
         children: [
             {
-                path: '/', 
+                path: '/',
                 element: <Home />
             },
             {
@@ -34,69 +35,76 @@ const router = createBrowserRouter([
                 element: <About />
             },
             {
-                path: 'login', 
+                path: 'login',
                 element: <Login />
-            }, 
+            },
             {
-                path: 'signup', 
+                path: 'signup',
                 element: <Signup />
-            }, 
+            },
             {
                 path: 'event',
                 element: <Event />
-            }, 
+            },
             {
                 path: 'event/:id',
                 element: <EventDetails />
-            }, 
-            {
-                path: 'profile', 
-                element: <Profile />
             },
             {
-                path: 'contact', 
+                path: 'contact',
                 element: <Contact />
-            }, 
+            },
             {
-                path: 'myevent', 
-                element: <MyEvent />
+                path: 'user',
+                element: <UserProtectLayout />,
+                children: [
+                    {
+                        path: 'profile',
+                        element: <Profile />
+                    },
+                    {
+                        path: 'myevent',
+                        element: <MyEvent />
+                    },
+                    
+                ]
             }
         ]
-    }, 
+    },
     {
-        path: 'admin', 
-        element: <AdminLayout />, 
-        errorElement: <Errorpage />, 
+        path: 'admin',
+        element: <AdminLayout />,
+        errorElement: <Errorpage />,
         children: [
             {
                 path: 'login',
-            }, 
+            },
             {
-                path: '', 
+                path: '',
                 element: <AdminProtectLayout />,  // after login
                 children: [
                     {
                         path: '',
                         element: <AdminHome />
-                    }, 
+                    },
                     {
                         path: 'event',
                         element: <AdminEvent />
-                    }, 
+                    },
                     {
                         path: 'event/:id',
                         element: <AdminEventDetails />
-                    }, 
+                    },
                     {
                         path: 'create-event',
                         element: <AdminCreateEvent />
                     },
                     {
-                        path:'collage', 
+                        path: 'collage',
                         element: <AdminCollage />
-                    }, 
+                    },
                     {
-                        path: 'user', 
+                        path: 'user',
                         element: <AdminUser />
                     }
                 ]

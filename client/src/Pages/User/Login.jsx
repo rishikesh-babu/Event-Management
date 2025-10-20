@@ -45,18 +45,21 @@ export default function Login() {
             data: credentials
         })
             .then((res) => {
-                const result = res.data;
-                console.log(res)
-                if (result.success) {
-                    dispatch(saveUserData({
-                        id: result.data.id,
-                        name: result.data.name,
-                        isAdmin: result.data.role === 'admin'
-                    }));
-                    setTimeout(() => navigate('/'), 500);
-                } else {
-                    setFormErrors({ general: result.message || "Login failed" });
-                }
+                console.log('res?.data?.data :>> ', res?.data?.data);
+                dispatch(saveUserData(res?.data?.data))
+                
+                // const result = res.data;
+                // console.log(res)
+                // if (result.success) {
+                //     dispatch(saveUserData({
+                //         id: result.data.id,
+                //         name: result.data.name,
+                //         isAdmin: result.data.role === 'admin'
+                //     }));
+                //     setTimeout(() => navigate('/'), 500);
+                // } else {
+                //     setFormErrors({ general: result.message || "Login failed" });
+                // }
             })
             .catch((err) => {
                 console.error('Login error:', err);
