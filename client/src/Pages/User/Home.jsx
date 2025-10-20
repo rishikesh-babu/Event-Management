@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Reveal, UpReveal } from '../../Animation/Animation';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
     useEffect(() => {
@@ -23,18 +24,18 @@ export default function Home() {
                     </Reveal>
 
                     <UpReveal className=" flex justify-center md:justify-start space-x-4">
-                        <button
-                            onClick={() => window.location.href = '/event'}
-                            className="py-1 px-3 sm:py-3 sm:px-8 font-bold text-lg text-blue-900 bg-blue-400 hover:bg-yellow-300 rounded-lg transition duration-300 transform hover:scale-105 shadow-md"
+                        <Link
+                            to={'/event'}
+                            className="py-1 px-3 sm:py-3 sm:px-8 font-bold text-center text-lg text-blue-900 bg-blue-400 sm:hover:bg-yellow-300 rounded-lg transition duration-300 transform hover:scale-105 shadow-md "
                         >
                             View Upcoming Events
-                        </button>
-                        <button
-                            onClick={() => window.location.href = '/login'}
-                            className="py-2 px-4 sm:py-3 sm:px-8 font-bold text-lg text-blue-900 hover:text-blue-700 bg-pink-600 border rounded-lg transition duration-300"
+                        </Link>
+                        <Link
+                            to={'/login'}
+                            className="py-2 px-4 sm:py-3 sm:px-8 font-bold text-lg text-blue-900 hover:text-blue-700 bg-pink-600 border rounded-lg flex justify-center items-center transition duration-300"
                         >
                             Login
-                        </button>
+                        </Link>
                     </UpReveal>
                 </div>
             </section>

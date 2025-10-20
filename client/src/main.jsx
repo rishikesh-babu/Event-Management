@@ -12,13 +12,11 @@ const updateSW = registerSW({
         alert("Application got updated, please refresh.")
         console.log("New content available, please refresh.")
     },
-    onOfflineReady() {}
+    onOfflineReady() { }
 })
 
 createRoot(document.getElementById('root')).render(
-    <StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </StrictMode>,
+    <Provider store={store}>
+        <App />
+    </Provider>
 )

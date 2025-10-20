@@ -7,7 +7,7 @@ function setCookies(res, token) {
 }
 
 function clearCookies(res) {
-    res.clearCookies('token', {
+    res.clearCookie('token', {
         sameSite: 'None', 
         secure: true, 
         httpOnly: true
