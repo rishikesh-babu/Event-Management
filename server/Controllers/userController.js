@@ -6,7 +6,7 @@ async function userSignup(req, res, next) {
     try {
         console.log('Router: User Signup')
 
-        let { name, email, password, department, phone, register_number } = req.body
+        let { name, email, password, department, phone, register_number, collageId } = req.body
 
         name = name?.trim()
         email = email?.trim()
@@ -26,7 +26,7 @@ async function userSignup(req, res, next) {
             return res.status(404).json({ message: 'Email already exist' })
         }
 
-        const { data, error } = await supabase.from('users').insert([{ name, email, password, department, phone, register_number }]).select('id, name, email, department, phone, register_number, role, status, created_at')
+        const { data, error } = await supabase.from('users').insert([{ name, email, password, department, phone, register_number, collageId }]).select('id, name, email, department, phone, register_number, role, status, created_at')
 
         if (error) {
             console.log('error :>> ', error);
@@ -101,7 +101,7 @@ async function userProfile(req, res, next) {
             return res.status(400).json({ message: 'User Id is required' })
         }
 
-        const userExist = await supabase.from('users').select('*').eq('id', id).single()
+        const userExist = await supabase.from('users').select('id, name, email, role, status, phone, department, register_number, created_at').eq('id', id).single()
 
         if (userExist.error) {
             return res.status(400).json({ message: 'Error in fetching user details', data: userExist.error })
