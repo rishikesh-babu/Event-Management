@@ -83,7 +83,7 @@ async function deleteEvent(req, res, next) {
         }
 
         const deleteEvent = await supabase.from('events').delete().eq('id', id)
-        
+
         if (deleteEvent.error || !deleteEvent.data) {
             return res.status(400).json({ message: 'Error in deleting event', data: deleteEvent.error })
         }
@@ -94,9 +94,69 @@ async function deleteEvent(req, res, next) {
     }
 }
 
+async function updateEvent(req, res, next) {
+    try {
+        const { title, description, type, fee, date, time, seat, registration_deadline } = req.body
+        const { eventId } = req.params
+
+        if (!eventId) {
+            return res.status(400).json({ message: 'Event Id is required' })
+        }
+
+        const updateData = {}
+
+        if (title) {
+            updateData.title = title
+        }
+
+        if (description) {
+            updateData.description = description
+        }
+
+        if (type) {
+            updateData.type = type
+        }
+
+        if (fe !== undefined) {
+            updateData.fee = fee
+        }
+
+        if (date) {
+            updateData.date = date
+        }
+
+        if (time) {
+            updateData.time = time
+        }
+
+        if (seat) {
+            updateData.seat = seat
+        }
+
+        if (registration_deadline) {
+            updateData.registration_deadline = registration_deadline
+        }
+
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ message: 'No fields provided for update' });
+        }
+
+        const updatedEvent = await supabase.from('events').update(updateData).eq('id', eventId).select('*').single()
+
+        if (updatedEvent.error) {
+            return res.status(400).json({ message: 'Error in updating event', data: updatedEvent.error })
+        }
+
+        return res.status(200).json({ message: 'Event updated successfully✅', data: updatedEvent.data })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
     createEvent,
     getEvents,
-    getEventDetails, 
-    deleteEvent
+    getEventDetails,
+    deleteEvent, 
+    updateEvent
 }
