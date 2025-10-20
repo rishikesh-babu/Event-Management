@@ -516,7 +516,7 @@ export default function AdminEventDetails() {
                             type="submit"
                             className="flex-1 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none transition-all duration-300"
                         >
-                            Create Event
+                            Update Event
                         </button>
                     </div>
                 </form>
