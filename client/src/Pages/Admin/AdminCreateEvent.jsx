@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axiosInstance from '../../Config/axiosInstance'
-
+import { Loader } from 'lucide-react'
 export default function AdminCreateEvent() {
     const [collages, setCollages] = useState([])
     const [event, setEvent] = useState({
@@ -17,7 +17,7 @@ export default function AdminCreateEvent() {
         duration: "", durationType: "",
     })
     const [errors, setErrors] = useState({});
-
+    const [submitting, setSubmitting] = useState(false)
 
     useEffect(() => {
         fetchCollage()
@@ -79,11 +79,27 @@ export default function AdminCreateEvent() {
         }
     }
 
+    const handleCancel = () => {
+        setEvent({
+            title: "",
+            description: "",
+            type: "",
+            date: "",
+            time: "",
+            collageId: "",
+            seat: "",
+            registration_deadline: "",
+            reg_fee: "",
+            duration: "", durationType: "",
+        })
+        setErrors({});
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const valid = validateForm();
         if (!valid) return;
-
+        setSubmitting(true);
         const payload = {
             title: event.title,
             description: event.description,
@@ -122,15 +138,16 @@ export default function AdminCreateEvent() {
             reg_fee: "",
             duration: "", durationType: "",
         })
+        setSubmitting(false);
     }
 
     return (
         <div className='w-full min-h-[90vh] flex items-center justify-center my-5'>
-            <div className='border shadow-xl bg-gradient-to-tr from-gray-100 to-gray-200 w-full md:w-[60%] px-6 py-8 rounded-xl'>
+            <div className='border shadow-xl bg-gradient-to-tr from-blue-100 to-purple-100 w-full md:w-[60%] px-6 py-8 rounded-xl'>
 
                 <div className='text-center mb-8'>
                     <h1 className='text-3xl font-bold text-gray-800 mb-2'>Create New Event</h1>
-                    <div className="w-24 h-1 bg-gray-500 mx-auto rounded-full"></div>
+                    <div className="w-24 h-1 bg-violet-500 mx-auto rounded-full"></div>
                 </div>
 
                 <form onSubmit={handleSubmit} className='space-y-6'>
@@ -166,8 +183,10 @@ export default function AdminCreateEvent() {
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-500 pb-2">Event Details</h3>
-
+                        <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                            <div className="w-1 h-6 bg-green-600 rounded-full"></div>
+                            Event Details
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Event Type<span className='text-red-500'>*</span></label>
@@ -222,8 +241,10 @@ export default function AdminCreateEvent() {
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-500 pb-2">Date & Time</h3>
-
+                        <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 py-3">
+                            <div className="w-1 h-6 bg-purple-600 rounded-full"></div>
+                            Date & Time
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Event Date <span className='text-red-500'>*</span></label>
@@ -270,7 +291,7 @@ export default function AdminCreateEvent() {
                                 )}
                             </div>
 
-                            <div>
+                            <div className="md:col-span-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-2 invisible">
                                     Type
                                 </label>
@@ -293,8 +314,10 @@ export default function AdminCreateEvent() {
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-500 pb-2">Registration</h3>
-
+                        <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                            <div className="w-1 h-6 bg-orange-600 rounded-full"></div>
+                            Registration
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Registration Deadline <span className='text-red-500'>*</span></label>
@@ -318,6 +341,7 @@ export default function AdminCreateEvent() {
                                     value={event.reg_fee}
                                     onChange={handleChange}
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all"
+                                    min="0"
                                 />
                                 {errors.reg_fee && (
                                     <p className="text-sm text-red-600 mt-1">{errors.reg_fee}</p>
@@ -327,18 +351,28 @@ export default function AdminCreateEvent() {
 
                     </div>
 
-                    <div className="flex gap-4 pt-6">
+                    <div className="flex gap-4 pt-6 border-t border-gray-200">
                         <button
                             type="button"
-                            className="flex-1 bg-gray-500 text-white font-semibold py-3 px-4 rounded-lg hover:bg-gray-600 focus:outline-none transition-all duration-300"
+                            onClick={handleCancel}
+                            disabled={submitting}
+                            className="flex-1 bg-gray-500 text-white font-semibold py-3 px-4 rounded-xl hover:bg-gray-600 focus:outline-none transition-all duration-300 disabled:opacity-50"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            className="flex-1 bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none transition-all duration-300"
+                            disabled={submitting}
+                            className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-blue-700 hover:to-purple-700 focus:outline-none transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
                         >
-                            Create Event
+                            {submitting ? (
+                                <>
+                                    <Loader size={20} className="animate-spin" />
+                                    Updating...
+                                </>
+                            ) : (
+                                'Update Event'
+                            )}
                         </button>
                     </div>
                 </form>
