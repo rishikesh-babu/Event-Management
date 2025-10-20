@@ -26,7 +26,7 @@ export default function Home() {
                     <UpReveal className=" flex justify-center md:justify-start space-x-4">
                         <Link
                             to={'/event'}
-                            className="py-1 px-3 sm:py-3 sm:px-8 font-bold text-center text-lg text-blue-900 bg-blue-400 sm:hover:bg-yellow-300 rounded-lg transition duration-300 transform hover:scale-105 shadow-md "
+                            className="py-1 px-3 sm:py-3 sm:px-8 font-bold text-center text-lg text-blue-900 bg-blue-400 sm:hover:bg-yellow-300 rounded-lg flex justify-center items-center transition duration-300 transform hover:scale-105 shadow-md "
                         >
                             View Upcoming Events
                         </Link>
