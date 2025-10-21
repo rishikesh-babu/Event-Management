@@ -15,15 +15,12 @@ export default function UserProtectLayout() {
     }, [])
 
     useEffect(() => {
-        console.log('second useeffect runs')
         if (userData === null) return // wait until userData is actually set
         if (!userData) {
             toast.error('Unauthorized User ❌')
             navigate('/login')
         }
     }, [userData, navigate])
-
-    console.log('userData :>> ', userData);
 
     function checkUser() {
         axiosInstance({

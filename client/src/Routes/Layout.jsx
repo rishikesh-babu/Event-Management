@@ -30,12 +30,12 @@ export default function Layout() {
     }
 
     return (
-        <>
+        <div className='min-h-[100dvh] flex flex-col justify-between'>
             <Navbar />
-            <main className='mt-[6rem] min-h-[80dvh]'>
+            <main className='mt-[6rem] min-h-[50vh]'>
                 <Outlet />
             </main>
             <Footer />
-        </>
+        </div>
     )
 }
