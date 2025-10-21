@@ -14,7 +14,9 @@ export default function Login() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const dispatch = useDispatch()
 
-
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
 
     const handleChange = (e) => {
         setCredentials({
@@ -47,7 +49,7 @@ export default function Login() {
             .then((res) => {
                 console.log('res?.data?.data :>> ', res?.data?.data);
                 dispatch(saveUserData(res?.data?.data))
-                
+
                 // const result = res.data;
                 // console.log(res)
                 // if (result.success) {
@@ -77,7 +79,7 @@ export default function Login() {
     }
 
     return (
-        <div className="max-w-md mx-auto mt-28 bg-white rounded-xl shadow-2xl p-8">
+        <div className="p-8 mt-3 sm:mt-32 md:mt-48 max-w-md mx-auto bg-white rounded-xl shadow-[0_0_40px_14px_rgba(0,0,0,0.2)] ">
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Login</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
