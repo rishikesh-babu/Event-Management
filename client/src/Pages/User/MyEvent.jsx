@@ -59,45 +59,45 @@ export default function MyEvent() {
                     </div>
                 )}
 
-                {registeredEvents?.map((item, index) => (
-                    <div
-                        key={item.id}
-                        className="group bg-gradient-to-r from-sky-100 to-indigo-100 dark:from-gray-800 dark:to-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl p-5 shadow-sm hover:shadow-lg transition-transform duration-200"
-                    >
-                        <div className="flex justify-between items-center">
-                            <p className="text-lg font-medium text-gray-800 dark:text-gray-100">
-                                Event #{item.eventId}
-                            </p>
-                            <span
-                                className={`px-3 py-1 text-sm font-semibold rounded-full ${item.status === "registered"
+                <div className=' flex flex-col justify-center items-center gap-4'>
+                    {!isLoading && registeredEvents?.map((item, index) => (
+                        <div
+                            key={item.id}
+                            className="p-5 bg-gradient-to-r from-sky-100 to-indigo-100 border border-gray-200 dark:border-gray-600 rounded-2xl shadow-sm hover:shadow-lg transition-transform duration-200"
+                        >
+                            <div className="flex justify-between items-center">
+                                <p className="text-lg font-medium text-gray-800 dark:text-gray-100">
+                                    Event #{item.eventId}
+                                </p>
+                                <span
+                                    className={`px-3 py-1 text-sm font-semibold rounded-full ${item.status === "registered"
                                         ? "bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100"
                                         : "bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100"
-                                    }`}
-                            >
-                                {item.status}
-                            </span>
+                                        }`}
+                                >
+                                    {item.status}
+                                </span>
+                            </div>
+
+                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                                Registered on{" "}
+                                <span className="font-medium">
+                                    {new Date(item.registrationTime).toLocaleString()}
+                                </span>
+                            </p>
+
+                            {/* Change Status Button */}
+                            <div className="mt-4 flex justify-end">
+                                <button
+                                    //   onClick={() => handleChangeStatus(item.id)}
+                                    className="px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition"
+                                >
+                                    {item.status === "registered" ? "Cancel" : "Re-register"}
+                                </button>
+                            </div>
                         </div>
-
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                            Registered on{" "}
-                            <span className="font-medium">
-                                {new Date(item.registrationTime).toLocaleString()}
-                            </span>
-                        </p>
-
-                        {/* Change Status Button */}
-                        <div className="mt-4 flex justify-end">
-                            <button
-                                //   onClick={() => handleChangeStatus(item.id)}
-                                className="px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition"
-                            >
-                                {item.status === "registered" ? "Cancel" : "Re-register"}
-                            </button>
-                        </div>
-                    </div>
-
-                ))}
-
+                    ))}
+                </div>
             </div>
         </div>
     )
