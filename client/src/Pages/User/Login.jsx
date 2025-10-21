@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { saveUserData } from '../../store/slice/userSlice'
 import { useDispatch } from 'react-redux';
 import axiosInstance from '../../Config/axiosInstance';
+import { toast } from 'react-toastify';
 
 export default function Login() {
     const navigate = useNavigate()
@@ -41,35 +42,42 @@ export default function Login() {
 
         setIsSubmitting(true);
 
-        axiosInstance({
-            method: 'POST',
-            url: '/user/login',
-            data: credentials
-        })
-            .then((res) => {
-                console.log('res?.data?.data :>> ', res?.data?.data);
-                dispatch(saveUserData(res?.data?.data))
-
-                // const result = res.data;
-                // console.log(res)
-                // if (result.success) {
-                //     dispatch(saveUserData({
-                //         id: result.data.id,
-                //         name: result.data.name,
-                //         isAdmin: result.data.role === 'admin'
-                //     }));
-                //     setTimeout(() => navigate('/'), 500);
-                // } else {
-                //     setFormErrors({ general: result.message || "Login failed" });
-                // }
+        toast.promise(
+            axiosInstance({
+                method: 'POST',
+                url: '/user/login',
+                data: credentials
             })
-            .catch((err) => {
-                console.error('Login error:', err);
-                setFormErrors({ general: err.message || "Something went wrong" });
-            })
-            .finally(() => {
-                setIsSubmitting(false);
-            });
+                .then((res) => {
+                    console.log('res?.data?.data :>> ', res?.data?.data);
+                    toast.success(res?.data?.message)
+                    dispatch(saveUserData(res?.data?.data))
+                    navigate(-1)
+                    // const result = res.data;
+                    // console.log(res)
+                    // if (result.success) {
+                    //     dispatch(saveUserData({
+                    //         id: result.data.id,
+                    //         name: result.data.name,
+                    //         isAdmin: result.data.role === 'admin'
+                    //     }));
+                    //     setTimeout(() => navigate('/'), 500);
+                    // } else {
+                    //     setFormErrors({ general: result.message || "Login failed" });
+                    // }
+                })
+                .catch((err) => {
+                    console.error('Login error:', err);
+                    toast.error(err?.response?.data?.message)
+                    setFormErrors({ general: err.message || "Something went wrong" });
+                })
+                .finally(() => {
+                    setIsSubmitting(false);
+                }),
+            {
+                pending: 'Loging...'
+            }
+        )
     };
 
 
