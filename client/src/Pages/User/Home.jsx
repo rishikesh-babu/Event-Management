@@ -16,11 +16,12 @@ export default function Home() {
             <section className=" px-4 sm:px-6 lg:px-8 min-h-[70vh] bg-zinc-100 flex flex-col justify-center">
                 <div className="max-w-6xl mx-auto mb-5 flex flex-col justify-between gap-8">
                     <Reveal className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
-                        Seamless Events, Smart Administration.
+                        Smart Event Management for Smarter Campuses
                     </Reveal>
 
                     <Reveal className="font-light text-justify text-xl md:text-4xl ">
-                        Automate event workflows for educational institutions with real-time capacity control, digital check-ins, and instant certificate generation.
+                        {/* Automate event workflows for educational institutions with real-time capacity control, digital check-ins, and instant certificate generation. */}
+                        Whether it’s a workshop, seminar, or cultural fest — plan, manage, and monitor everything from one place. Simple, fast, and reliable.
                     </Reveal>
 
                     <UpReveal className=" flex justify-center md:justify-start space-x-4">

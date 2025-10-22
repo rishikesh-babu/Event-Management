@@ -163,7 +163,7 @@ export default function Signup() {
             .then((res) => {
                 console.log(res)
                 const result = res.data;
-                if (res.status === 201 ) {
+                if (res.status === 201) {
                     dispatch(saveUserData({
                         id: result.data.id,
                         name: result.data.name,
@@ -184,208 +184,210 @@ export default function Signup() {
 
     }
     return (
-        <div className="max-w-2xl mx-auto mb-8 mt-24 bg-white rounded-xl shadow-2xl p-8">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Create Account</h2>
+        <div className='px-1 py-3 sm:py-10 md:py-16 flex flex-col'>
+            <div className="p-8 w-full max-w-2xl mx-auto bg-white rounded-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Create Account</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">First Name <span className='text-red-500 text-md'>*</span></label>
-                        <input
-                            type="text"
-                            name="first_name"
-                            value={formData.first_name}
-                            onChange={handleChange}
-                            className={getClassName('first_name')}
-                        />
-                        {formErrors.first_name && (
-                            <p className="text-sm text-red-600 mt-1">{formErrors.first_name}</p>
-                        )}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">First Name <span className='text-red-500 text-md'>*</span></label>
+                            <input
+                                type="text"
+                                name="first_name"
+                                value={formData.first_name}
+                                onChange={handleChange}
+                                className={getClassName('first_name')}
+                            />
+                            {formErrors.first_name && (
+                                <p className="text-sm text-red-600 mt-1">{formErrors.first_name}</p>
+                            )}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Middle Name</label>
+                            <input
+                                type="text"
+                                name="middle_name"
+                                value={formData.middle_name}
+                                onChange={handleChange}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Last Name <span className='text-red-500 text-md'>*</span></label>
+                            <input
+                                type="text"
+                                name="last_name"
+                                value={formData.last_name}
+                                onChange={handleChange}
+                                className={getClassName('last_name')}
+                            />
+                            {formErrors.last_name && (
+                                <p className="text-sm text-red-600 mt-1">{formErrors.last_name}</p>
+                            )}
+                        </div>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Middle Name</label>
-                        <input
-                            type="text"
-                            name="middle_name"
-                            value={formData.middle_name}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Register Number <span className='text-red-500 text-md'>*</span></label>
+                            <input
+                                type="text"
+                                name="register_number"
+                                value={formData.register_number}
+                                onChange={handleChange}
+                                className={getClassName('register_number')}
+                            />
+
+                            {formErrors.register_number && (
+                                <p className="text-sm text-red-600 mt-1">{formErrors.register_number}</p>
+                            )}
+
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Email <span className='text-red-500 text-md'>*</span></label>
+                            <input
+                                type="text"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className={getClassName('email')}
+                            />
+                            {formErrors.email && (
+                                <p className="text-sm text-red-600 mt-1">{formErrors.email}</p>
+                            )}
+                        </div>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Last Name <span className='text-red-500 text-md'>*</span></label>
-                        <input
-                            type="text"
-                            name="last_name"
-                            value={formData.last_name}
-                            onChange={handleChange}
-                            className={getClassName('last_name')}
-                        />
-                        {formErrors.last_name && (
-                            <p className="text-sm text-red-600 mt-1">{formErrors.last_name}</p>
-                        )}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number<span className='text-red-500 text-md'>*</span></label>
+                            <input
+                                type="number"
+                                name="phone_number"
+                                value={formData.phone_number}
+                                onChange={handleChange}
+                                className={getClassName('phone_number')}
+                                placeholder="9999999999"
+                            />
+                            {formErrors.phone_number && (
+                                <p className="text-sm text-red-600 mt-1">{formErrors.phone_number}</p>
+                            )}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Department <span className="text-red-500 text-md">*</span>
+                            </label>
+                            <select
+                                name="department"
+                                value={formData.department}
+                                onChange={handleChange}
+                                className={getClassName('department')}
+                            >
+                                <option value="">Select Department</option>
+                                <option value="Chemical Engineering">Chemical Engineering</option>
+                                <option value="Civil Engineering">Civil Engineering</option>
+                                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                                <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                                <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+                                <option value="Electronics and Computer Engineering">Electronics and Computer Engineering</option>
+                                <option value="Food Technology">Food Technology</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Robotics and Automation">Robotics and Automation</option>
+                                <option value="VLSI Design and Technology">VLSI Design and Technology</option>
+                            </select>
+
+                            {formErrors.department && (
+                                <p className="text-sm text-red-600 mt-1">{formErrors.department}</p>
+                            )}
+                        </div>
+
                     </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Password <span className='text-red-500 text-md'>*</span></label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                className={getClassName('password')}
+                            />
+                            {formErrors.password && (
+                                <p className="text-sm text-red-600 mt-1">{formErrors.password}</p>
+                            )}
+
+                            {formData.password && (
+                                <div className="mt-2 text-xs">
+                                    <p className="font-medium mb-1">Password must contain:</p>
+                                    <ul className="space-y-1">
+                                        <li className={passwordValidation.hasUpperCase ? 'text-green-600' : 'text-red-600'}>
+                                            {passwordValidation.hasUpperCase ? '✓' : '✗'} At least one uppercase letter
+                                        </li>
+                                        <li className={passwordValidation.hasLowerCase ? 'text-green-600' : 'text-red-600'}>
+                                            {passwordValidation.hasLowerCase ? '✓' : '✗'} At least one lowercase letter
+                                        </li>
+                                        <li className={passwordValidation.hasNumber ? 'text-green-600' : 'text-red-600'}>
+                                            {passwordValidation.hasNumber ? '✓' : '✗'} At least one number
+                                        </li>
+                                        <li className={passwordValidation.hasSpecialChar ? 'text-green-600' : 'text-red-600'}>
+                                            {passwordValidation.hasSpecialChar ? '✓' : '✗'} At least one special character
+                                        </li>
+                                        <li className={passwordValidation.hasMinLength ? 'text-green-600' : 'text-red-600'}>
+                                            {passwordValidation.hasMinLength ? '✓' : '✗'} At least 8 characters long
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password <span className='text-red-500 text-md'>*</span></label>
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                className={getClassName('confirmPassword')}
+                            />
+                            {formErrors.confirmPassword && (
+                                <p className="text-sm text-red-600 mt-1">{formErrors.confirmPassword}</p>
+                            )}
+                            {formData.confirmPassword && (
+                                <div className="mt-2 text-xs">
+                                    <ul >
+                                        <li className={confirmPasswordValidation.isSame ? 'text-green-600' : 'text-red-600'}>
+                                            {confirmPasswordValidation.isSame ? '✓ Password Match' : '✗ Passwords Do not match'}
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 "
+                    >
+                        {isSubmitting ? 'Submitting...' : 'Create Account'}
+                    </button>
+                </form>
+
+                <div className="mt-6 text-center">
+                    <p className="text-gray-600">Already have an account?</p>
+                    <button
+                        onClick={() => navigate('/Login')}
+                        className="text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                        Login here
+                    </button>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Register Number <span className='text-red-500 text-md'>*</span></label>
-                        <input
-                            type="text"
-                            name="register_number"
-                            value={formData.register_number}
-                            onChange={handleChange}
-                            className={getClassName('register_number')}
-                        />
-
-                        {formErrors.register_number && (
-                            <p className="text-sm text-red-600 mt-1">{formErrors.register_number}</p>
-                        )}
-
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Email <span className='text-red-500 text-md'>*</span></label>
-                        <input
-                            type="text"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className={getClassName('email')}
-                        />
-                        {formErrors.email && (
-                            <p className="text-sm text-red-600 mt-1">{formErrors.email}</p>
-                        )}
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number<span className='text-red-500 text-md'>*</span></label>
-                        <input
-                            type="number"
-                            name="phone_number"
-                            value={formData.phone_number}
-                            onChange={handleChange}
-                            className={getClassName('phone_number')}
-                            placeholder="9999999999"
-                        />
-                        {formErrors.phone_number && (
-                            <p className="text-sm text-red-600 mt-1">{formErrors.phone_number}</p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Department <span className="text-red-500 text-md">*</span>
-                        </label>
-                        <select
-                            name="department"
-                            value={formData.department}
-                            onChange={handleChange}
-                            className={getClassName('department')}
-                        >
-                            <option value="">Select Department</option>
-                            <option value="Chemical Engineering">Chemical Engineering</option>
-                            <option value="Civil Engineering">Civil Engineering</option>
-                            <option value="Computer Science and Engineering">Computer Science and Engineering</option>
-                            <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
-                            <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
-                            <option value="Electronics and Computer Engineering">Electronics and Computer Engineering</option>
-                            <option value="Food Technology">Food Technology</option>
-                            <option value="Mechanical Engineering">Mechanical Engineering</option>
-                            <option value="Robotics and Automation">Robotics and Automation</option>
-                            <option value="VLSI Design and Technology">VLSI Design and Technology</option>
-                        </select>
-
-                        {formErrors.department && (
-                            <p className="text-sm text-red-600 mt-1">{formErrors.department}</p>
-                        )}
-                    </div>
-
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Password <span className='text-red-500 text-md'>*</span></label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            className={getClassName('password')}
-                        />
-                        {formErrors.password && (
-                            <p className="text-sm text-red-600 mt-1">{formErrors.password}</p>
-                        )}
-
-                        {formData.password && (
-                            <div className="mt-2 text-xs">
-                                <p className="font-medium mb-1">Password must contain:</p>
-                                <ul className="space-y-1">
-                                    <li className={passwordValidation.hasUpperCase ? 'text-green-600' : 'text-red-600'}>
-                                        {passwordValidation.hasUpperCase ? '✓' : '✗'} At least one uppercase letter
-                                    </li>
-                                    <li className={passwordValidation.hasLowerCase ? 'text-green-600' : 'text-red-600'}>
-                                        {passwordValidation.hasLowerCase ? '✓' : '✗'} At least one lowercase letter
-                                    </li>
-                                    <li className={passwordValidation.hasNumber ? 'text-green-600' : 'text-red-600'}>
-                                        {passwordValidation.hasNumber ? '✓' : '✗'} At least one number
-                                    </li>
-                                    <li className={passwordValidation.hasSpecialChar ? 'text-green-600' : 'text-red-600'}>
-                                        {passwordValidation.hasSpecialChar ? '✓' : '✗'} At least one special character
-                                    </li>
-                                    <li className={passwordValidation.hasMinLength ? 'text-green-600' : 'text-red-600'}>
-                                        {passwordValidation.hasMinLength ? '✓' : '✗'} At least 8 characters long
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password <span className='text-red-500 text-md'>*</span></label>
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
-                            className={getClassName('confirmPassword')}
-                        />
-                        {formErrors.confirmPassword && (
-                            <p className="text-sm text-red-600 mt-1">{formErrors.confirmPassword}</p>
-                        )}
-                        {formData.confirmPassword && (
-                            <div className="mt-2 text-xs">
-                                <ul >
-                                    <li className={confirmPasswordValidation.isSame ? 'text-green-600' : 'text-red-600'}>
-                                        {confirmPasswordValidation.isSame ? '✓ Password Match' : '✗ Passwords Do not match'}
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 "
-                >
-                    {isSubmitting ? 'Submitting...' : 'Create Account'}
-                </button>
-            </form>
-
-            <div className="mt-6 text-center">
-                <p className="text-gray-600">Already have an account?</p>
-                <button
-                    onClick={() => navigate('/Login')}
-                    className="text-blue-600 hover:text-blue-700 font-medium"
-                >
-                    Login here
-                </button>
             </div>
         </div>
     )
