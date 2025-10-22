@@ -126,8 +126,31 @@ export default function AdminEventDetails() {
         e.preventDefault()
         if (!validate()) return;
 
+        const payload = {};
+        Object.keys(event).forEach(key => {
+            if (event[key] !== originalEvent[key]) {
+                payload[key] = event[key]
+            }
+        })
+        if (payload.duration || payload.durationType) {
+            payload.duration = `${event.duration} ${event.durationType}`
+        }
 
-        setEdit(false);
+        console.log("Payload", payload)
+        axiosInstance({
+            method: 'PUT',
+            url: `/event/${id}`,
+            data: payload
+        })
+            .then((res) => {
+                console.log('res :>> ', res);
+                setEdit(false);
+            })
+            .catch((err) => {
+                console.log('err :>> ', err);
+
+            })
+
         setOriginalEvent(event);
     }
 
@@ -430,7 +453,7 @@ export default function AdminEventDetails() {
                                 )}
                             </div>
                         </div>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Duration <span className='text-red-500'>*</span>
