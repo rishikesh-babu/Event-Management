@@ -2,16 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axiosInstance from '../../Config/axiosInstance'
 import { Calendar, Clock, IndianRupee, Users } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 export default function EventDetails() {
     const { id } = useParams()
+    const navigate = useNavigate()
     const [eventDetails, setEventDetails] = useState()
     const [registrations, setRegistrations] = useState([])
     const [collageDetails, setCollageDetails] = useState()
+    const [registered, setRegistered] = useState(false)
+    const [registrationClosed, setRegistrationClosed] = useState(false);
+
 
     useEffect(() => {
         fetchEventDetails()
-        fetchRegistrations()
+        //fetchRegistrations()
+        fetchMyRegistrations()
     }, [id])
 
     useEffect(() => {
@@ -37,6 +43,9 @@ export default function EventDetails() {
         })
             .then((res) => {
                 setEventDetails(res?.data?.data)
+                const today = new Date()
+                const deadline = new Date(res?.data?.data?.registration_deadline);
+                setRegistrationClosed(today > deadline)
             })
             .catch((err) => {
                 console.log('err :>> ', err);
@@ -74,6 +83,22 @@ export default function EventDetails() {
             })
     }
 
+
+    function fetchMyRegistrations() {
+        axiosInstance({
+            method: 'GET',
+            url: '/registration'
+        })
+            .then((res) => {
+                const data = res?.data?.data
+                const isRegistered = data.some((item) => Number(item.eventId) === Number(id))
+                setRegistered(isRegistered)
+            })
+            .catch((err) => {
+                console.log('err :>> ', err);
+            })
+    }
+
     function formatDate(dateStr) {
         const date = new Date(dateStr)
 
@@ -93,6 +118,20 @@ export default function EventDetails() {
         return `${hour12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
     }
 
+    function eventRegistrtion() {
+        axiosInstance({
+            method: 'POST',
+            url: `/registration/${id}`
+        })
+            .then((res) => {
+                console.log(res?.data?.data)
+                setRegistered(true)
+            })
+            .catch((err) => {
+                console.log('err :>> ', err);
+            })
+    }
+
     return (
         <div>
             {!eventDetails ? (
@@ -100,7 +139,7 @@ export default function EventDetails() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div className='px-1 pb-7 sm:pb-10 flex flex-col gap-6 sm:gap-8'>
+                 <div className='px-1 pb-7 sm:pb-10 flex flex-col gap-6 sm:gap-8'>
                     {/* Title and short details */}
                     <div className=' text-white bg-[url("https://picsum.photos/1200/400?random=1")] bg-cover rounded-2xl '>
                         <div className=' min-h-[85vh] bg-black/70 rounded-2xl flex flex-col justify-center items-center gap-7 sm:gap-9 '>
@@ -125,10 +164,29 @@ export default function EventDetails() {
                                     {formatTime(eventDetails?.time)}
                                 </div>
                             </div>
-
-                            <button className='px-6 py-2 text-2xl sm:text-3xl bg-green-500 rounded-xl shadow-[0px_0px_10px_#00ffff] hover:scale-105 transition-all duration-300'>
-                                Register
-                            </button>
+                            {registrationClosed ? (
+                                <button
+                                    disabled
+                                    className='px-6 py-2 text-2xl sm:text-3xl font-semibold bg-gradient-to-r from-red-600 via-pink-600 to-rose-600 rounded-xl shadow-[0px_0px_10px_#FF3366]  cursor-not-allowed'>
+                                    Registration Closed
+                                </button>
+                            ) : registered ?
+                                (<div className="flex flex-col items-center gap-2">
+                                        <p className="text-gray-300 text-lg text-center">
+                                            You’re already registered for this event
+                                        </p>
+                                        <button
+                                            onClick={() => navigate('/user/myevent')}
+                                            className='px-6 py-2 text-2xl sm:text-3xl font-semibold  bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600  rounded-xl shadow-[0px_0px_10px_#9B5DE5] hover:scale-105 transition-all duration-300'>
+                                            View My Events
+                                        </button>
+                                    </div>) :
+                                (<button
+                                    onClick={eventRegistrtion}
+                                    className='px-6 py-2 text-2xl sm:text-3xl font-semibold bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500  rounded-xl shadow-[0px_0px_10px_#00ffff] hover:scale-105 transition-all duration-300'>
+                                    Register
+                                </button>)
+                            }
                         </div>
                     </div>
 
