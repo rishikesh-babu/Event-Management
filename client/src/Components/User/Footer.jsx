@@ -9,10 +9,10 @@ export default function Footer() {
                     Home
                 </Link>
                 <Link to="/about" className="hover:text-white">
-                    About Us
+                    About 
                 </Link>
                 <Link to="/contact" className="hover:text-white">
-                    Contact Us
+                    Contact
                 </Link>
                 <Link to="/admin/login" className="hover:text-white">
                     Admin Login
