@@ -117,7 +117,7 @@ async function updateEvent(req, res, next) {
             updateData.type = type
         }
 
-        if (fe !== undefined) {
+        if (fee !== undefined) {
             updateData.fee = fee
         }
 
