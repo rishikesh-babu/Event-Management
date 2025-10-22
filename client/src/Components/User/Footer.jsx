@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from 'react-router-dom';
 export default function Footer() {
     return (
-        <footer className="py-6 text-white bg-gray-800 flex flex-col justify-between gap-4">
+        <footer className="px-1 py-8 text-gray-400 bg-gray-800 flex flex-col justify-between gap-8">
             {/* Top Links */}
-            <div className="text-sm text-nowrap flex justify-around">
+            <div className="font-medium text-lg text-nowrap flex justify-around sm:justify-center sm:gap-14">
                 <Link to="/" className="hover:text-white">
                     Home
                 </Link>
@@ -24,13 +24,13 @@ export default function Footer() {
                 <img
                     src="/logo.png"
                     alt="logo"
-                    className="w-12 h-12"
+                    className="size-24 "
                 />
             </div>
 
             {/* Copyright */}
-            <p className="text-center text-sm text-gray-400">
-                Copyright © 2025 - All rights reserved by <span className="italic">PlanIt</span>
+            <p className="font-medium text-lg text-center text-wrap text-gray-400">
+                Copyright © 2025 - All rights reserved by <div className="italic">PlanIt</div>
             </p>
         </footer>
     );
