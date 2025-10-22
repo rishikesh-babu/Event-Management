@@ -87,54 +87,56 @@ export default function Login() {
     }
 
     return (
-        <div className="p-8 mt-3 sm:mt-32 md:mt-48 max-w-md mx-auto bg-white rounded-xl shadow-[0_0_40px_14px_rgba(0,0,0,0.2)] ">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Login</h2>
+        <div className='p-1 border flex flex-col '>
+            <div className="p-8 w-full max-w-md mx-auto bg-white rounded-xl shadow-[0_0_40px_14px_rgba(0,0,0,0.2)] ">
+                <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Login</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email <span className='text-red-500 text-md'>*</span></label>
-                    <input
-                        type="text"
-                        name="email"
-                        value={credentials.email}
-                        onChange={handleChange}
-                        className={getClassName('email')}
-                    />
-                    {formErrors.email && (
-                        <p className="text-sm text-red-600 mt-1">{formErrors.email}</p>
-                    )}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Email <span className='text-red-500 text-md'>*</span></label>
+                        <input
+                            type="text"
+                            name="email"
+                            value={credentials.email}
+                            onChange={handleChange}
+                            className={getClassName('email')}
+                        />
+                        {formErrors.email && (
+                            <p className="text-sm text-red-600 mt-1">{formErrors.email}</p>
+                        )}
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={credentials.password}
+                            onChange={handleChange}
+                            className={getClassName('password')}
+                        />
+                        {formErrors.password && (
+                            <p className="text-sm text-red-600 mt-1">{formErrors.password}</p>
+                        )}
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        Login
+                    </button>
+                </form>
+
+                <div className="mt-6 text-center">
+                    <p className="text-gray-600">Don't have an account?</p>
+                    <button
+                        onClick={() => navigate('/signup')}
+                        className="text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                        Register here
+                    </button>
                 </div>
-
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={credentials.password}
-                        onChange={handleChange}
-                        className={getClassName('password')}
-                    />
-                    {formErrors.password && (
-                        <p className="text-sm text-red-600 mt-1">{formErrors.password}</p>
-                    )}
-                </div>
-
-                <button
-                    type="submit"
-                    className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                    Login
-                </button>
-            </form>
-
-            <div className="mt-6 text-center">
-                <p className="text-gray-600">Don't have an account?</p>
-                <button
-                    onClick={() => navigate('/signup')}
-                    className="text-blue-600 hover:text-blue-700 font-medium"
-                >
-                    Register here
-                </button>
             </div>
         </div>
     )
