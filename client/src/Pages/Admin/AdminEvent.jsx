@@ -8,6 +8,7 @@ export default function AdminEvent() {
 
     useEffect(() => {
         fetchEvent()
+        window.scroll(0, 0)
     }, [])
 
     const filteredEvents = useMemo(() => {

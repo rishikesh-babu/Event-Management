@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axiosInstance from '../../Config/axiosInstance'
 import { Loader } from 'lucide-react'
+import { toast } from 'react-toastify'
 export default function AdminCreateEvent() {
     const [collages, setCollages] = useState([])
     const [event, setEvent] = useState({
@@ -113,18 +114,24 @@ export default function AdminCreateEvent() {
             duration: `${event.duration} ${event.durationType}`,
         }
 
-        axiosInstance({
-            method: 'POST',
-            url: '/event',
-            data: payload
-        })
-            .then((res) => {
-                console.log('res :>> ', res);
+        toast.promise(
+            axiosInstance({
+                method: 'POST',
+                url: '/event',
+                data: payload
             })
-            .catch((err) => {
-                console.log('err :>> ', err);
-
-            })
+                .then((res) => {
+                    console.log('res :>> ', res);
+                    toast.success(res?.data?.message || 'Event created successfully')
+                })
+                .catch((err) => {
+                    console.log('err :>> ', err);
+                    toast.error(err?.response?.data?.message || 'Error in creating event')
+                }),
+            {
+                pending: 'Creating Event..'
+            }
+        )
 
         setEvent({
             title: "",
@@ -368,10 +375,10 @@ export default function AdminCreateEvent() {
                             {submitting ? (
                                 <>
                                     <Loader size={20} className="animate-spin" />
-                                    Updating...
+                                    Creating...
                                 </>
                             ) : (
-                                'Update Event'
+                                'Create Event'
                             )}
                         </button>
                     </div>

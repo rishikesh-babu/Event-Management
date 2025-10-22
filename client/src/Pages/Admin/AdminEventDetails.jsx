@@ -17,7 +17,9 @@ export default function AdminEventDetails() {
     const [loading, setLoading] = useState(true)
     const [registrations, setRegistrations] = useState([])
 
-
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
 
     useEffect(() => {
         fetchEventDetails()
@@ -522,8 +524,6 @@ export default function AdminEventDetails() {
                 </form>
             </div>
         </div>)}
-
-
     </>
     )
 }
