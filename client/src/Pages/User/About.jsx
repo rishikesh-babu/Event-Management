@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function About() {
   // Define variables for placeholders to make them easy to update
@@ -6,6 +6,10 @@ export default function About() {
   const founderName = "The Dev Team";
   const foundedYear = "2023";
   const eventCount = "20+";
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
 
   return (
     // Outer container for padding and background
