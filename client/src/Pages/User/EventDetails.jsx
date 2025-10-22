@@ -100,7 +100,7 @@ export default function EventDetails() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                <div className='p-1 sm:p-3 md:p-5 flex flex-col gap-6 sm:gap-8'>
+                <div className='px-1 pb-7 sm:pb-10 flex flex-col gap-6 sm:gap-8'>
                     {/* Title and short details */}
                     <div className=' text-white bg-[url("https://picsum.photos/1200/400?random=1")] bg-cover rounded-2xl '>
                         <div className=' min-h-[85vh] bg-black/70 rounded-2xl flex flex-col justify-center items-center gap-7 sm:gap-9 '>

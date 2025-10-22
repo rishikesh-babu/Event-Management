@@ -87,7 +87,7 @@ export default function Login() {
     }
 
     return (
-        <div className='p-1 border flex flex-col '>
+        <div className='px-1 py-3 sm:py-10 md:py-16 flex flex-col '>
             <div className="p-8 w-full max-w-md mx-auto bg-white rounded-xl shadow-[0_0_40px_14px_rgba(0,0,0,0.2)] ">
                 <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Login</h2>
 

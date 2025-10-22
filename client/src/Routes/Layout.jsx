@@ -25,7 +25,7 @@ export default function Layout() {
             })
             .catch((err) => {
                 dispatch(clearUserData())
-                navigate('/login')
+                // navigate('/login')
             })
     }
 
