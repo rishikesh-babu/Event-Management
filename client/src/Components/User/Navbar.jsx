@@ -31,8 +31,6 @@ export default function Navbar() {
         scrollToTop()
     }, [])
 
-    console.log('userData :>> ', userData);
-
     function scrollToTop() {
         window.scroll(0, 0)
     }
@@ -64,7 +62,7 @@ export default function Navbar() {
                     onClick={scrollToTop}
                     className='w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full cursor-pointer hover:scale-105 transition-transform duration-300 bg-gray-100 shadow-sm'
                 >
-                    <img src="\logo.png" alt="PlanIt-Logo" className='w-8 h-8 sm:w-10 sm:h-10 object-contain rounded-full' />
+                    <img src="/logo.png" alt="PlanIt-Logo" className='w-8 h-8 sm:w-10 sm:h-10 object-contain rounded-full' />
                 </div>
 
                 {/* Navigation Icons */}
@@ -99,9 +97,12 @@ export default function Navbar() {
 
                         {openMenu && (
                             <div onClick={() => setOpenMenu(!openMenu)} className="absolute right-0 top-[3.3rem] p-2 min-w-[8rem] bg-gray-100/80 rounded-2xl shadow-[0_0_20px_4px_rgba(0,0,0,0.2)] flex flex-col">
-                                <button className="px-4 py-2 rounded-xl transition">
+                                <Link to={'/user/profile'} className="block px-4 py-2 text-center rounded-xl transition">
+                                    Profile 
+                                </Link>
+                                {/* <button className="px-4 py-2 rounded-xl transition">
                                     Theme
-                                </button>
+                                </button> */}
                                 <button onClick={logout} className="px-4 py-2 font-semibold text-red-500 rounded-xl">
                                     Logout
                                 </button>
