@@ -251,18 +251,18 @@ export default function MyEvent() {
                                 </div>
 
                                 {/* Status and Action Buttons */}
-                                <div className="actions  flex flex-col sm:flex-row items-start md:items-center justify-end space-y-3 sm:space-y-0 sm:space-x-4">
+                                <div className="actions  flex  sm:flex-row items-start md:items-center justify-end space-y-3 sm:space-y-0 sm:space-x-4">
 
                                     {/* Action Button */}
                                     <button
                                         onClick={() => handleChangeStatus(event.id, event.status)}
-                                        className="px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition"
+                                        className="flex-1 px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition"
                                     >
                                         {event.status === "registered" ? "Cancel" : "Re-register"}
                                     </button>
                                     <button
                                         onClick={() => navigate(`/event/${event.id}`)}
-                                        className={`py-2 px-4 rounded-lg font-medium 
+                                        className={`flex-1 py-2 px-4 rounded-lg font-medium 
                                                     registered bg-blue-500 text-white hover:bg-blue-600 transition duration-200 shadow-md`}
                                     >
                                         View Details
@@ -356,7 +356,7 @@ export default function MyEvent() {
     //     </div>
     // )}
     //         <div className="my-events-container max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 min-h-screen">
-
+cd
     //             {/* Page Header */}
     //             <div className="text-center mb-10">
     //                 <h1 className="text-4xl font-extrabold text-gray-900 border-b-4 border-blue-500 inline-block pb-1">
