@@ -51,8 +51,8 @@ export default function Profile() {
     }
 
     return (
-        <div className="py-10 min-h-[50vh] flex justify-center items-center border">
-            <div className="p-6 w-full max-w-md bg-white rounded-lg shadow-lg">
+        <div className="py-2 sm:py-10 min-h-[50vh] flex justify-center items-center ">
+            <div className="p-6 w-full max-w-md bg-white rounded-lg shadow-[0_0_20px_4px_rgba(0,0,0,0.2)]">
                 <h1 className="mb-6 text-3xl font-bold text-gray-800 text-center border-b pb-2">
                     Profile Details
                 </h1>
