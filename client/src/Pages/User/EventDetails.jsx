@@ -91,7 +91,7 @@ export default function EventDetails() {
         })
             .then((res) => {
                 const data = res?.data?.data
-                const isRegistered = data.some((item) => Number(item.eventId) === Number(id))
+                const isRegistered = data.some((item) => Number(item.event.id) === Number(id))
                 setRegistered(isRegistered)
             })
             .catch((err) => {
