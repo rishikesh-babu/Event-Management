@@ -119,7 +119,22 @@ async function getUserRegisteredEvents(req, res, next) {
             return res.status(400).json({ message: 'Error in fetching details', data: registrations.error })
         }
 
-        return res.status(200).json({ message: 'Registrations fetched', data: registrations.data })
+        if (registrations.data.length === 0) {
+            return res.status(200).json({ message: 'No event is registered', data: registrations.data })
+        }
+
+        const eventIds = registrations.data.map(item => item.eventId)
+
+        const eventExist = await supabase.from('events').select('*').in('id', eventIds)
+
+        const registrationWithEvent = registrations.data.map(({ eventId, ...rest }) => ({
+            ...rest,
+            event: eventExist.data.find(event => event.id === eventId) || null
+        }))
+
+        console.log('registrationWithEvent :>> ', registrationWithEvent);
+
+        return res.status(200).json({ message: 'Registrations fetched', data: registrationWithEvent })
     } catch (err) {
         next(err)
     }
@@ -128,6 +143,6 @@ async function getUserRegisteredEvents(req, res, next) {
 module.exports = {
     registerEvent,
     updateRegistration,
-    deleteRegistration, 
+    deleteRegistration,
     getUserRegisteredEvents,
 }
