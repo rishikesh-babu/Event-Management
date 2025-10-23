@@ -99,7 +99,7 @@ export default function Profile() {
                                 {/* Department */}
                                 <div className="flex justify-between items-center gap-4 border-b border-dashed pb-2">
                                     <span className="text-gray-600 font-medium">Department:</span>
-                                    <span className="text-gray-800 font-normal">{userDetails?.department || "N/A"}</span>
+                                    <span className="text-gray-800 text-right font-normal">{userDetails?.department || "N/A"}</span>
                                 </div>
 
                                 {/* Phone */}
