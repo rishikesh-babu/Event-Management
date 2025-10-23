@@ -173,7 +173,7 @@ export default function MyEvent() {
                     </div>
                 )}
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center items-center gap-4 gap-y-6 py-6'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-4 gap-y-6 py-6'>
                     {!isLoading && registeredEvents?.map((event, index) => (
                         // <div
                         //     key={item.id}
@@ -251,7 +251,7 @@ export default function MyEvent() {
                                 </div>
 
                                 {/* Status and Action Buttons */}
-                                <div className="actions  flex  sm:flex-row items-start md:items-center justify-end space-y-3 sm:space-y-0 sm:space-x-4">
+                                <div className="actions  flex  sm:flex-row md:items-center justify-between gap-2">
 
                                     {/* Action Button */}
                                     <button
