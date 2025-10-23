@@ -10,6 +10,28 @@ export default function Profile() {
     }, []);
 
     console.log('userDetails :>> ', userDetails);
+    
+ function formatDate(dateStr) {
+
+        if (!dateStr) { 
+        return "Date Not Available"; 
+        }
+
+    
+        const date = new Date(dateStr)
+
+        if (isNaN(date.getTime())) {
+        return "Invalid date format"; 
+        }
+
+        const day = date.toLocaleDateString("en-US", { weekday: "long" })
+        const dayNum = date.getDate().toString()
+        const month = date.toLocaleDateString("en-US", { month: "long" })
+        const year = date.getFullYear().toString()
+
+        const result = [day, dayNum, month, year]
+        return result
+    }
 
     function fetchUserDetails() {
         setLoading(true);
@@ -41,7 +63,7 @@ export default function Profile() {
                     <div className="flex flex-col items-center gap-4">
                         {/* 👇 Profile Picture + Upload Line */}
                         <div className="flex flex-col items-center gap-2">
-                            <img src="/userprofilepic.jpg"
+                            <img src="/Profile.jpg"
                                 alt="User Avatar"
                                 className="w-24 h-24 rounded-full border border-gray-300 object-cover"
                             />
@@ -54,7 +76,9 @@ export default function Profile() {
                             </h2>
                             <p className="text-gray-500">{userDetails?.email}</p>
                             <p className="text-sm text-gray-500">
-                                Joined:{"October 2,2025"}
+                                Joined on: <span>{formatDate(userDetails.created_at)[1]} </span>
+                                           <span>{formatDate(userDetails.created_at)[2]} </span>
+                                           <span>{formatDate(userDetails.created_at)[3]}</span>
                             </p>
                         </div>
                     </div>
