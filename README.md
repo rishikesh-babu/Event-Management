@@ -57,8 +57,8 @@ Event management within educational institutions (colleges, universities) is oft
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/eduverse-ai.git
-   cd eduverse-ai
+   git clone https://github.com/your-username/PlanIT.git
+   cd PlanIt
 
 2. **Change Folder to Client**
     ```bash
