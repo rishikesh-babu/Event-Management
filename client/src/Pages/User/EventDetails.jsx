@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axiosInstance from '../../Config/axiosInstance'
 import { Calendar, Clock, IndianRupee, Users } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export default function EventDetails() {
     const { id } = useParams()
@@ -119,17 +120,24 @@ export default function EventDetails() {
     }
 
     function eventRegistrtion() {
-        axiosInstance({
-            method: 'POST',
-            url: `/registration/${id}`
-        })
-            .then((res) => {
-                console.log(res?.data?.data)
-                setRegistered(true)
+        toast.promise(
+            axiosInstance({
+                method: 'POST',
+                url: `/registration/${id}`
             })
-            .catch((err) => {
-                console.log('err :>> ', err);
-            })
+                .then((res) => {
+                    console.log(res?.data?.data)
+                    toast.success(res?.data?.message)
+                    setRegistered(true)
+                })
+                .catch((err) => {
+                    console.log('err :>> ', err);
+                    toast.error(err?.response?.data?.message)
+                }),
+            {
+                pending: 'Please wait'
+            }
+        )
     }
 
     return (
@@ -139,7 +147,7 @@ export default function EventDetails() {
                     <span className="loading loading-spinner text-primary w-10 h-10" />
                 </div>
             ) : (
-                 <div className='px-1 pb-7 sm:pb-10 flex flex-col gap-6 sm:gap-8'>
+                <div className='px-1 pb-7 sm:pb-10 flex flex-col gap-6 sm:gap-8'>
                     {/* Title and short details */}
                     <div className=' text-white bg-[url("https://picsum.photos/1200/400?random=1")] bg-cover rounded-2xl '>
                         <div className=' min-h-[85vh] bg-black/70 rounded-2xl flex flex-col justify-center items-center gap-7 sm:gap-9 '>
@@ -172,15 +180,15 @@ export default function EventDetails() {
                                 </button>
                             ) : registered ?
                                 (<div className="flex flex-col items-center gap-2">
-                                        <p className="text-gray-300 text-lg text-center">
-                                            You’re already registered for this event
-                                        </p>
-                                        <button
-                                            onClick={() => navigate('/user/myevent')}
-                                            className='px-6 py-2 text-2xl sm:text-3xl font-semibold  bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600  rounded-xl shadow-[0px_0px_10px_#9B5DE5] hover:scale-105 transition-all duration-300'>
-                                            View My Events
-                                        </button>
-                                    </div>) :
+                                    <p className="text-gray-300 text-lg text-center">
+                                        You’re already registered for this event
+                                    </p>
+                                    <button
+                                        onClick={() => navigate('/user/myevent')}
+                                        className='px-6 py-2 text-2xl sm:text-3xl font-semibold  bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600  rounded-xl shadow-[0px_0px_10px_#9B5DE5] hover:scale-105 transition-all duration-300'>
+                                        View My Events
+                                    </button>
+                                </div>) :
                                 (<button
                                     onClick={eventRegistrtion}
                                     className='px-6 py-2 text-2xl sm:text-3xl font-semibold bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500  rounded-xl shadow-[0px_0px_10px_#00ffff] hover:scale-105 transition-all duration-300'>
