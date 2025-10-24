@@ -197,12 +197,12 @@ export default function AdminEvent() {
                                     >
                                         View
                                     </Link>
-                                    {/* <button
+                                     <button
                                         // onClick={() => handleDelete(item.id)}
                                         className="px-3 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600 transition-all"
                                     >
                                         Delete
-                                    </button> */}
+                                    </button> 
                                 </div>
                             </div>
                         ))}
