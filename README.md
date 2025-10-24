@@ -1,9 +1,9 @@
 # 📅 PlanIt: Automated Event Management System
 
-An **offline-enhanced, centralized web platform** designed to streamline event registration, attendance tracking, and certificate generation for educational institutions.
+A **centralized web platform** designed to streamline event registration, attendance tracking, and certificate generation for educational institutions.
 
 ## Live Link 🔗
-**[Insert Project Live Link Here]**
+**(https://planit-adir.onrender.com/)**
 
 ---
 
@@ -40,22 +40,47 @@ Event management within educational institutions (colleges, universities) is oft
 ## 🛠️ Tech Stack
 
 ### Frontend (User Interface & Logic)
+
 - **React** → Component-driven architecture for modular and scalable UI (Used for Home, About Us, My Events pages).
 - **Tailwind CSS** → Utility-first framework for rapid, responsive, and consistent styling across all pages.
 - **React Router DOM** → Handling client-side routing and navigation between pages (e.g., `/events`, `/about`, `/my-events`).
 
 ### Backend (Server Logic & Data)
+
 - **Node.js + Express.js** → Robust REST API to handle user authentication, event posting, and registration logic.
-- **[Insert Database Name Here]** → Persistence for event records and registration data.
+- **PostgresSQL** → Persistence for event records and registration data.
 - **Axios Instance** → Managing API communication (like fetching registration records on the My Events page).
 
 ---
 
 ## 📦 Installation & Setup
 
-### A. Frontend Setup (Client)
-
-1. **Clone the repository:**
+1. **Clone the repository**
    ```bash
-   git clone [https://github.com/your-username/PlanIt.git](https://github.com/your-username/PlanIt.git)
-   cd PlanIt/client
+   git clone https://github.com/your-username/eduverse-ai.git
+   cd eduverse-ai
+
+2. **Change Folder to Client**
+    ```bash
+    cd client
+
+3. **Install Dependencies**
+    ```bash
+    npm install
+
+4. **Run The Development Server**
+    ```bash
+    npm run dev
+
+**Backend Setup**
+
+5. **Change Folder to server**
+    ```bash
+    cd server
+
+6. **Run npm**
+    ```bash
+    npm install
+
+and then
+    npm start
