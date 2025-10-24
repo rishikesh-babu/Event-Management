@@ -13,10 +13,10 @@ export default function Layout() {
 
     useEffect(() => {
         checkUser()
-        if (userData && userData?.role === 'admin') {
-            console.log('userData :>> ', userData);
-            navigate('/admin/event')
-        }
+        // if (userData && userData?.role === 'admin') {
+        //     console.log('userData :>> ', userData);
+        //     navigate('/admin/event')
+        // }
     }, []) // Run once on mount
 
     function checkUser() {
