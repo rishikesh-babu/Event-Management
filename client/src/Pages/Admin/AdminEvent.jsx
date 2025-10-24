@@ -40,6 +40,19 @@ export default function AdminEvent() {
                 setEvent([])
             })
     }
+
+    function handleDelete(id){
+        axiosInstance({
+            method: 'DELETE',
+            url: `/event/${id}`
+        })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log('err :>> ', err);
+            })
+    }
     return (
         // <div>
 
@@ -198,7 +211,7 @@ export default function AdminEvent() {
                                         View
                                     </Link>
                                      <button
-                                        // onClick={() => handleDelete(item.id)}
+                                        onClick={() => handleDelete(item.id)}
                                         className="px-3 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600 transition-all"
                                     >
                                         Delete

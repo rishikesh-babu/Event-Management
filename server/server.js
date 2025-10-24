@@ -28,8 +28,7 @@ app.listen(port, (err) => {
 
 app.use((req, res, next) => {
     console.log('\nreq.method :>> ', req.method);
-    console.log('req.path :>> ', req.path);
-
+    console.log('req.path :>> ', req.path);                         
     next()
 })
 

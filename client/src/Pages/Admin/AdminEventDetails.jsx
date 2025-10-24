@@ -231,7 +231,7 @@ export default function AdminEventDetails() {
                             <div className="w-1 h-full bg-teal-500 rounded-l-lg absolute top-0 left-0"></div>
                             <div className="ml-3">
                                 <p className="font-medium">Registered Participants</p>
-                                <p>{registrations.length}</p>
+                                <p>{registrations?.length}</p>
                             </div>
                         </div>
 
