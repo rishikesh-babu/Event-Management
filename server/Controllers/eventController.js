@@ -4,13 +4,13 @@ async function createEvent(req, res, next) {
     try {
         console.log('Router: Create')
 
-        let { title, description, type, fee, date, time, collageId, seat, registration_deadline } = req.body
+        let { title, description, type, fee, date, time, collageId, duration , seat, registration_deadline } = req.body
 
         title = title?.trim()
         description = description?.trim()
         type = type?.trim()
 
-        if (!title || !description || !type || !fee || !date || !time || !collageId || seat == null || seat <= 0 || !registration_deadline) {
+        if (!title || !description || !type || !fee || !date || !time || !collageId ||!duration || seat == null || seat <= 0 || !registration_deadline) {
             return res.status(400).json({ message: 'All fields are required and seat must be > 0' })
         }
 
@@ -21,7 +21,7 @@ async function createEvent(req, res, next) {
             return res.status(404).json({ message: 'Collage does not exist ❌' })
         }
 
-        const eventResponse = await supabase.from('events').insert([{ title, description, type, fee, date, time, collageId, seat, registration_deadline }]).select('*')
+        const eventResponse = await supabase.from('events').insert([{ title, description, type, fee, date, time, collageId, duration , seat, registration_deadline }]).select('*')
         if (eventResponse.error) {
             return res.status(400).json({ message: 'Event not created ❌', data: eventResponse.error })
         }
