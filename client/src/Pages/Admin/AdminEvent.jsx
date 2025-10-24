@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import axiosInstance from '../../Config/axiosInstance'
+import { toast } from 'react-toastify'
 
 export default function AdminEvent() {
     const [event, setEvent] = useState([])
@@ -41,17 +42,24 @@ export default function AdminEvent() {
             })
     }
 
-    function handleDelete(id){
-        axiosInstance({
-            method: 'DELETE',
-            url: `/event/${id}`
-        })
-            .then((res) => {
-                console.log(res)
+    function handleDelete(id) {
+        toast.promise(
+            axiosInstance({
+                method: 'DELETE',
+                url: `/event/${id}`
             })
-            .catch((err) => {
-                console.log('err :>> ', err);
-            })
+                .then((res) => {
+                    console.log(res)
+                    toast.success(res?.data?.message || 'Deleted successfully')
+                })
+                .catch((err) => {
+                    console.log('err :>> ', err);
+                    toast.error(err?.response?.data?.message || 'Error in deleting event')
+                }),
+            {
+                pending: 'Deleting'
+            }
+        )
     }
     return (
         // <div>
@@ -178,8 +186,8 @@ export default function AdminEvent() {
             <div>
                 {event.length === 0 ? (
                     <div className="flex justify-center items-center h-48">
-                    <span className="loading loading-spinner text-primary w-10 h-10" />
-                </div>
+                        <span className="loading loading-spinner text-primary w-10 h-10" />
+                    </div>
                 ) : (
                     <div className='w-full overflow-auto'>
                         <div className="p-3 min-w-[400px] font-semibold text-gray-700 text-lg bg-gray-300/60 rounded-t-lg grid grid-cols-[40px_1fr_1fr_160px] border-b border-gray-300">
@@ -210,12 +218,12 @@ export default function AdminEvent() {
                                     >
                                         View
                                     </Link>
-                                     <button
+                                    <button
                                         onClick={() => handleDelete(item.id)}
                                         className="px-3 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600 transition-all"
                                     >
                                         Delete
-                                    </button> 
+                                    </button>
                                 </div>
                             </div>
                         ))}

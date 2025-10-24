@@ -224,8 +224,8 @@ export default function MyEvent() {
                                     <span className='px-2 py-1 rounded-full text-xs font-semibold border bg-blue-500/20 text-blue-500 border-blue-600/50'>
                                         {event.type}
                                     </span>
-                                    <span className={`px-2 py-1 rounded-full text-xs font-semibold border 
-                    ${event.status?.toLowerCase() === 'registered' ? 'bg-green-100 text-green-700 border-green-500' :
+                                    <span className={`px-2 py-1 capitalize rounded-full text-xs font-semibold border 
+                    ${event.status === 'registered' ? 'bg-green-100 text-green-700 border-green-500' :
                                             event.status?.toLowerCase() === 'cancelled' ? 'bg-yellow-100 text-yellow-700 border-yellow-500' :
                                                 'bg-gray-100 text-gray-600 border-gray-300'}`}>
                                         {event.status}
