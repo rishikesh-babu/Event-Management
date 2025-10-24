@@ -40,7 +40,6 @@ async function registerEvent(req, res, next) {
         }
 
         const registerUser = await supabase.from('registrations').insert([{ userId, eventId }]).select('*').single()
-        const registerUser = {}
         if (registerUser.error) {
             return res.status(400).json({ message: 'Error in registration ❌', data: registerUser.error })
         }
