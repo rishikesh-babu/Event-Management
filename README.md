@@ -83,4 +83,5 @@ Event management within educational institutions (colleges, universities) is oft
     npm install
 
 and then
+    ```bash
     npm start
