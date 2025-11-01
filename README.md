@@ -82,7 +82,7 @@ Event management within educational institutions (colleges, universities) is oft
     ```bash
     npm install
 
-and then
+7. and then
     
     ```bash
     npm start
